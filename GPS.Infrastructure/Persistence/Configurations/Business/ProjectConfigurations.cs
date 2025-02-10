@@ -7,13 +7,13 @@ using GraduationProjecrStore.Infrastructure.Domain.Entities.Business;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace GraduationProjecrStore.Infrastructure.Persistence.Configurations
+namespace GraduationProjecrStore.Infrastructure.Persistence.Configurations.Business
 {
     public class ProjectConfigurations : IEntityTypeConfiguration<Project>
     {
         public void Configure(EntityTypeBuilder<Project> builder)
         {
-            builder.ToTable("Project").HasKey(x=>x.Id);
+            builder.ToTable("Project").HasKey(x => x.Id);
         }
     }
 }

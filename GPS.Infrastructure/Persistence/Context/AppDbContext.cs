@@ -1,15 +1,17 @@
 ﻿using GraduationProjecrStore.Infrastructure.Domain.Entities.Business;
+using GraduationProjecrStore.Infrastructure.Domain.Entities.Security;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 namespace GraduationProjecrStore.Infrastructure.Persistence.Context
 {
-    public class AppDbContext : IdentityDbContext
+    public class AppDbContext : IdentityDbContext<ApplicationUser, ApplicationRole,Guid>
     {
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
+
         public DbSet<Department> Departments { set; get; }  
         public DbSet<Project> Projects { set; get; }
         public DbSet<Student> Students { set; get; }
         public DbSet<Supervisor> Supervisors { set; get; }
-
 
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -17,6 +19,4 @@ namespace GraduationProjecrStore.Infrastructure.Persistence.Context
             builder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
         }
     }
-
-   
 }

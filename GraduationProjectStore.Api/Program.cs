@@ -1,6 +1,9 @@
 using GraduationProjecrStore.Infrastructure;
+using GraduationProjecrStore.Infrastructure.Domain.Entities.Security;
 using GraduationProjecrStore.Infrastructure.Persistence.Context;
+using GraduationProjectStore.Core;
 using GraduationProjectStore.Service;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,11 +20,17 @@ var connectionString = builder.Configuration.GetConnectionString("Connection");
 builder.Services.AddDbContext<AppDbContext>(option=>option.UseSqlServer(connectionString));
 
 
+//
+
+builder.Services.AddIdentity<ApplicationUser, ApplicationRole>().
+    AddEntityFrameworkStores<AppDbContext>().
+    AddDefaultTokenProviders();
+
+
 // register business modules
 builder.Services.AddServiceModules();
 builder.Services.AddInfrastructureModules();
-
-
+builder.Services.AddCoreModules();
 
 
 var app = builder.Build();

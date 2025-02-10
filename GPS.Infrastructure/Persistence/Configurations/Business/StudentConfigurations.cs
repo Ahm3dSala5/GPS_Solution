@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace GraduationProjecrStore.Infrastructure.Persistence.Configurations
+namespace GraduationProjecrStore.Infrastructure.Persistence.Configurations.Business
 {
     public class StudentConfigurations : IEntityTypeConfiguration<Student>
     {

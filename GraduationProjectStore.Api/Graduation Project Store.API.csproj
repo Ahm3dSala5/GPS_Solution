@@ -20,8 +20,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\GPS.Core\GraduationProjectStore.Core.csproj" />
     <ProjectReference Include="..\GPS.Infrastructure\GraduationProjecrStore.Infrastructure.csproj" />
     <ProjectReference Include="..\GPS.Service\GraduationProjectStore.Service.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Controllers\" />
   </ItemGroup>
 
 </Project>

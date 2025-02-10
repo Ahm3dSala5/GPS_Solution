@@ -3,12 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GraduationProjecrStore.Infrastructure.Domain.Entities.Business;
+using GraduationProjecrStore.Infrastructure.Persistence.Context;
+using GraduationProjecrStore.Infrastructure.Repository;
 using GraduationProjectStore.Service.Abstraction.Business;
 
 namespace GraduationProjectStore.Service.Implementation.Security
 {
-    public class StudentService : IStudentService
+    public class StudentService : MainRepository<Student> , IStudentService
     {
-
+        private readonly AppDbContext _app;
+        public StudentService(AppDbContext app) : base(app)
+        {
+            this._app = app;
+        }
     }
 }

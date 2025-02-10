@@ -1,12 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace GraduationProjectStore.Core
 {
-    internal class Modules
+    public static class Modules
     {
+        public static void AddCoreModules(this IServiceCollection service)
+        {
+            service.Configure<IdentityOptions>
+            (
+                options => 
+                {
+                    options.Password.RequiredLength = 8;
+                    options.Password.RequireNonAlphanumeric = false;
+                    options.Password.RequireLowercase = false;
+                    options.Password.RequireUppercase = false;
+                }
+            );
+        }
     }
 }

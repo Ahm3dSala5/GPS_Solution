@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35527.113 d17.12
+VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D1A64DFE-DAA1-4CD8-916F-C7CBDDA970BD}"
 EndProject
@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraduationProjectStore.Serv
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraduationProjectStore.Core", "GPS.Core\GraduationProjectStore.Core.csproj", "{1DDC8B3E-BA49-4215-A636-F090C95C9DC5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraduationProjectStore.API", "GraduationProjectStore.Api\GraduationProjectStore.API.csproj", "{D88AB1F0-B915-4F1B-8B40-973811E26D84}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graduation Project Store.API", "GraduationProjectStore.Api\Graduation Project Store.API.csproj", "{D88AB1F0-B915-4F1B-8B40-973811E26D84}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraduationProjectStore.MVC", "GraduationProjectStore.MVC\GraduationProjectStore.MVC.csproj", "{1FCDE2BA-B743-47CF-BEE8-4DE6E6DFFE37}"
 EndProject
