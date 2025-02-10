@@ -1,3 +1,8 @@
+using GraduationProjecrStore.Infrastructure;
+using GraduationProjecrStore.Infrastructure.Persistence.Context;
+using GraduationProjectStore.Service;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,6 +11,18 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// register Database
+var connectionString = builder.Configuration.GetConnectionString("Connection");
+builder.Services.AddDbContext<AppDbContext>(option=>option.UseSqlServer(connectionString));
+
+
+// register business modules
+builder.Services.AddServiceModules();
+builder.Services.AddInfrastructureModules();
+
+
+
 
 var app = builder.Build();
 

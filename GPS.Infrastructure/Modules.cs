@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using GraduationProjecrStore.Infrastructure.Repository;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace GraduationProjecrStore.Infrastructure
 {
-    internal class Modules
+    public static class Modules
     {
+        public static void AddInfrastructureModules(this IServiceCollection service)
+        {
+            service.AddTransient(typeof(IMainRepository<>),typeof(MainRepository<>));
+        }
     }
 }
