@@ -7,14 +7,23 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Feature\" />
-    <Folder Include="ResultHandler\" />
-    <Folder Include="Mapping\" />
+    <Folder Include="Feature\Project\Command\Validations\" />
+    <Folder Include="Feature\Project\Query\Model\" />
+    <Folder Include="Feature\Project\Query\Handler\" />
+    <Folder Include="Feature\Project\Query\Request\" />
+    <Folder Include="Mapping\Supervisor\Query\" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="8.0.8" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GPS.Infrastructure\GraduationProjecrStore.Infrastructure.csproj" />
+    <ProjectReference Include="..\GPS.Service\GraduationProjectStore.Service.csproj" />
   </ItemGroup>
 
 </Project>

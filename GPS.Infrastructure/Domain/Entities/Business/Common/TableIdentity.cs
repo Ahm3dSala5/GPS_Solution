@@ -3,6 +3,6 @@
     public abstract class TableIdentity
     {
         public int Id { set; get; }
-        public string Name { set; get; }
+        public string?Name { set; get; }
     }
 }

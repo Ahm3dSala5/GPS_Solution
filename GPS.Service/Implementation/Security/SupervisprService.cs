@@ -8,7 +8,6 @@ namespace GraduationProjectStore.Service.Implementation.Security
     public class SupervisorService : MainRepository<Supervisor>, ISupervisorService
     {
         private readonly AppDbContext _app; 
-
         public SupervisorService(AppDbContext app) : base(app)
         {
             this._app = app;

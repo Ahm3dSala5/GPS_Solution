@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using System.Reflection;
+using MediatR;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace GraduationProjectStore.Core
@@ -7,6 +9,8 @@ namespace GraduationProjectStore.Core
     {
         public static void AddCoreModules(this IServiceCollection service)
         {
+
+            // to add password defualt settings
             service.Configure<IdentityOptions>
             (
                 options => 
@@ -17,6 +21,10 @@ namespace GraduationProjectStore.Core
                     options.Password.RequireUppercase = false;
                 }
             );
+
+            // to register mapper and mediatr
+            service.AddMediatR(Assembly.GetExecutingAssembly());
+            service.AddAutoMapper(Assembly.GetExecutingAssembly());
         }
     }
 }
