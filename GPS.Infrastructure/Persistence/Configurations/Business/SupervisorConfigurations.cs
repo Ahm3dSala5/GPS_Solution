@@ -9,6 +9,13 @@ namespace GraduationProjecrStore.Infrastructure.Persistence.Configurations.Busin
         public void Configure(EntityTypeBuilder<Supervisor> builder)
         {
             builder.ToTable("Supervisor").HasKey(x => x.Id);
+
+            // one to many with department
+            builder.HasOne(x =>x.Department)
+                .WithMany(x => x.Supervisors)
+                .HasForeignKey(x=>x.DepartmentId)
+                .OnDelete(DeleteBehavior.Restrict)
+                .IsRequired(true);
         }
     }
 }

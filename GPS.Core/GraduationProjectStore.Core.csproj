@@ -11,6 +11,7 @@
     <Folder Include="Feature\Project\Query\Model\" />
     <Folder Include="Feature\Project\Query\Handler\" />
     <Folder Include="Feature\Project\Query\Request\" />
+    <Folder Include="Feature\Department\Command\Validations\" />
     <Folder Include="Mapping\Supervisor\Query\" />
   </ItemGroup>
 

@@ -49,7 +49,7 @@ namespace GraduationProjecrStore.Infrastructure.Repository
             var oldEntity = await _entity.FindAsync(id);
 
             if (oldEntity == null)
-                return "Not Found";
+                return "NotFound";
 
             _entity.Entry(oldEntity).CurrentValues.SetValues(entity);
             var updatingResult = await _app.SaveChangesAsync();

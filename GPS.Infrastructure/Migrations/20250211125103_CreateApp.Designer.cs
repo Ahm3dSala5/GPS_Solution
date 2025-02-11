@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GraduationProjecrStore.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250210121752_CreateDb")]
-    partial class CreateDb
+    [Migration("20250211125103_CreateApp")]
+    partial class CreateApp
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -38,7 +38,6 @@ namespace GraduationProjecrStore.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -62,18 +61,27 @@ namespace GraduationProjecrStore.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("varbinary(max)");
 
+                    b.Property<int>("DepartmentId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SupervisorId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("UploadAt")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("DepartmentId");
+
+                    b.HasIndex("SupervisorId");
 
                     b.ToTable("Project", (string)null);
                 });
@@ -93,6 +101,9 @@ namespace GraduationProjecrStore.Infrastructure.Migrations
                     b.Property<DateTime>("BirthDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("DepartmentId")
+                        .HasColumnType("int");
+
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -108,10 +119,21 @@ namespace GraduationProjecrStore.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("ProjectId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SupervisorId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("DepartmentId");
+
+                    b.HasIndex("ProjectId");
+
+                    b.HasIndex("SupervisorId");
 
                     b.ToTable("Student", (string)null);
                 });
@@ -131,6 +153,9 @@ namespace GraduationProjecrStore.Infrastructure.Migrations
                     b.Property<DateTime>("BirthDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("DepartmentId")
+                        .HasColumnType("int");
+
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -140,7 +165,6 @@ namespace GraduationProjecrStore.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Position")
@@ -148,6 +172,8 @@ namespace GraduationProjecrStore.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("DepartmentId");
 
                     b.ToTable("Supervisor", (string)null);
                 });
@@ -320,6 +346,84 @@ namespace GraduationProjecrStore.Infrastructure.Migrations
                     b.HasKey("UserId", "LoginProvider");
 
                     b.ToTable("UserToken", (string)null);
+                });
+
+            modelBuilder.Entity("GraduationProjecrStore.Infrastructure.Domain.Entities.Business.Project", b =>
+                {
+                    b.HasOne("GraduationProjecrStore.Infrastructure.Domain.Entities.Business.Department", "Department")
+                        .WithMany("Projects")
+                        .HasForeignKey("DepartmentId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("GraduationProjecrStore.Infrastructure.Domain.Entities.Business.Supervisor", "Supervisor")
+                        .WithMany("Projects")
+                        .HasForeignKey("SupervisorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Department");
+
+                    b.Navigation("Supervisor");
+                });
+
+            modelBuilder.Entity("GraduationProjecrStore.Infrastructure.Domain.Entities.Business.Student", b =>
+                {
+                    b.HasOne("GraduationProjecrStore.Infrastructure.Domain.Entities.Business.Department", "Department")
+                        .WithMany("Students")
+                        .HasForeignKey("DepartmentId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("GraduationProjecrStore.Infrastructure.Domain.Entities.Business.Project", "Project")
+                        .WithMany("Students")
+                        .HasForeignKey("ProjectId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("GraduationProjecrStore.Infrastructure.Domain.Entities.Business.Supervisor", "Supervisor")
+                        .WithMany("Students")
+                        .HasForeignKey("SupervisorId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Department");
+
+                    b.Navigation("Project");
+
+                    b.Navigation("Supervisor");
+                });
+
+            modelBuilder.Entity("GraduationProjecrStore.Infrastructure.Domain.Entities.Business.Supervisor", b =>
+                {
+                    b.HasOne("GraduationProjecrStore.Infrastructure.Domain.Entities.Business.Department", "Department")
+                        .WithMany("Supervisors")
+                        .HasForeignKey("DepartmentId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Department");
+                });
+
+            modelBuilder.Entity("GraduationProjecrStore.Infrastructure.Domain.Entities.Business.Department", b =>
+                {
+                    b.Navigation("Projects");
+
+                    b.Navigation("Students");
+
+                    b.Navigation("Supervisors");
+                });
+
+            modelBuilder.Entity("GraduationProjecrStore.Infrastructure.Domain.Entities.Business.Project", b =>
+                {
+                    b.Navigation("Students");
+                });
+
+            modelBuilder.Entity("GraduationProjecrStore.Infrastructure.Domain.Entities.Business.Supervisor", b =>
+                {
+                    b.Navigation("Projects");
+
+                    b.Navigation("Students");
                 });
 #pragma warning restore 612, 618
         }

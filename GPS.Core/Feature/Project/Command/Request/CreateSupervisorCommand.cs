@@ -6,8 +6,8 @@ namespace GraduationProjectStore.Core.Feature.Project.Command.Request
 {
     public class CreateSupervisorCommand : IRequest<Result<string>>
     {
-        public CreateSupervisorDto Supervisor { get; set; }
-        public CreateSupervisorCommand(CreateSupervisorDto supervisor) 
+        public CreateSupervisorDTO Supervisor { get; set; }
+        public CreateSupervisorCommand(CreateSupervisorDTO supervisor) 
         {
           this.Supervisor = supervisor;
         }

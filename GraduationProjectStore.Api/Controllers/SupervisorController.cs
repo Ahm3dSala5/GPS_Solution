@@ -10,7 +10,7 @@ namespace Graduation_Project_Store.API.Controllers
     public class SupervisorController : MainController
     {
         [HttpPost("Create")]
-        public async Task<IActionResult> Create(CreateSupervisorDto supervisor)
+        public async Task<IActionResult> Create(CreateSupervisorDTO supervisor)
         {
             var createCommand = await Mediator.Send(new CreateSupervisorCommand(supervisor));
             return HandledResult(createCommand);    

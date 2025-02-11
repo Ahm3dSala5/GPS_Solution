@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using GraduationProjecrStore.Infrastructure.Domain.Entities.Business.Common;
+﻿using GraduationProjecrStore.Infrastructure.Domain.Entities.Business.Common;
 
 namespace GraduationProjecrStore.Infrastructure.Domain.Entities.Business
 {
-
     public class Supervisor : TableIdentity 
     {
         public string FirstName { set; get; }
@@ -15,5 +9,9 @@ namespace GraduationProjecrStore.Infrastructure.Domain.Entities.Business
         public string Position { set; get; }    
         public string Address { set; get; }
         public DateTime BirthDate { set; get; }
+        public int DepartmentId { set; get; }
+        public Department Department { set; get; }
+        public ICollection<Student> Students { set; get; } = new List<Student>();
+        public ICollection<Project> Projects { set; get; } = new List<Project>();
     }
 }

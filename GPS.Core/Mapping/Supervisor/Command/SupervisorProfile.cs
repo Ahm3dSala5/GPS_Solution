@@ -12,12 +12,12 @@ namespace GraduationProjectStore.Core.Mapping.Supervisors
     {
         public void CreateSupervisorCommandMapping()
         {
-            CreateMap<Supervisor, CreateSupervisorDto>()
+            CreateMap<Supervisor, CreateSupervisorDTO>()
                 .ForMember(x => x.FirstName, x => x.MapFrom(x => x.FirstName))
                 .ForMember(x => x.LastName, x => x.MapFrom(x => x.LastName))
                 .ForMember(x => x.Position, x => x.MapFrom(x => x.Position))
+                .ForMember(x => x.DepartmentId, x => x.MapFrom(x => x.DepartmentId))
                 .ForMember(x => x.Address, x => x.MapFrom(x => x.Address)).ReverseMap();
-                
         }
     }
 }
