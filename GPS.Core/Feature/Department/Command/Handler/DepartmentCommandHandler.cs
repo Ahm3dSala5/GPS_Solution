@@ -50,7 +50,7 @@ namespace GraduationProjectStore.Core.Feature.Departments.Command.Handler
                 return NotFound<string>(_message: "Department Not Found");
 
             return updatingResult == "Successfully" ?
-                Success<string>(_message: "Department Updated Successfully") :
+                OK<string>(_message: "Department Updated Successfully") :
                 BadRequest<string>(_message: "Invalid Updating");
         }
 
@@ -67,7 +67,7 @@ namespace GraduationProjectStore.Core.Feature.Departments.Command.Handler
                 return NotFound<string>(_message: "Department Not Found");
 
             return deletingResult == "Successfully" ?
-                Success<string>(_message: "Department Deleted Successfully") :
+                OK<string>(_message: "Department Deleted Successfully") :
                 BadRequest<string>(_message: "Invalid Deleting");
         }
     }

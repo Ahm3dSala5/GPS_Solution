@@ -11,7 +11,9 @@ namespace GraduationProjectStore.Core.Mapping.Supervisors
     {
         public SupervisorProfile()
         {
+            GetSupervisorQueryMapping();
             CreateSupervisorCommandMapping();
+            UpdateSupervisorCommandMapping();
         }
     }
 }

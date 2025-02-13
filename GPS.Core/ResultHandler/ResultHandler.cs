@@ -29,7 +29,7 @@ namespace GraduationProjectStore.Core.ResultHandlers
                 Successed = false,
             };
         }
-        public Result<T> Success<T>(T _data = null, object _meta = null, string _message = null)
+        public Result<T> OK<T>(T _data = null, object _meta = null, string _message = null)
             where T : class
         {
             return new Result<T>()

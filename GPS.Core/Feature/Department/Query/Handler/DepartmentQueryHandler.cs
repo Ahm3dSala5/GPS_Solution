@@ -39,7 +39,7 @@ namespace GraduationProjectStore.Core.Feature.Departments.Query.Handler
 
             var departmentMapped = _mapper.
                 Map<ICollection<DepartmentModel>>(departments);
-            return Success<ICollection<DepartmentModel>>
+            return OK<ICollection<DepartmentModel>>
                 (_data:departmentMapped,_meta:$"Department Count = {departmentMapped.Count()}");
         }
 
@@ -53,7 +53,7 @@ namespace GraduationProjectStore.Core.Feature.Departments.Query.Handler
 
             var departmentMapped = _mapper.
                Map<DepartmentModel>(department);
-            return Success<DepartmentModel>(_data:departmentMapped);
+            return OK<DepartmentModel>(_data:departmentMapped);
         }
     }
 }

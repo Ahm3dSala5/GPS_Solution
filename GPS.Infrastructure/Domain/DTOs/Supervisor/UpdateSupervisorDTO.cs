@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GraduationProjecrStore.Infrastructure.Domain.DTOs.Supervisors
+﻿namespace GraduationProjecrStore.Infrastructure.Domain.DTOs.Supervisor
 {
-    public class CreateSupervisorDTO
+    public class UpdateSupervisorDTO
     {
+        public int Id { set; get; }
         public string FirstName { set; get; }
         public string LastName { set; get; }
         public string Position { set; get; }
