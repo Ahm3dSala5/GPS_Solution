@@ -1,4 +1,4 @@
-﻿using GraduationProjecrStore.Infrastructure.Domain.DTOs;
+﻿using GraduationProjecrStore.Infrastructure.Domain.DTOs.Department;
 using GraduationProjecrStore.Infrastructure.Domain.Entities.Business;
 
 namespace GraduationProjectStore.Core.Mapping.Departments

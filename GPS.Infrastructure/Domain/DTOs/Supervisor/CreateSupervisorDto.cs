@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GraduationProjecrStore.Infrastructure.Domain.DTOs.Supervisors
+namespace GraduationProjecrStore.Infrastructure.Domain.DTOs.Supervisor
 {
     public class CreateSupervisorDTO
     {

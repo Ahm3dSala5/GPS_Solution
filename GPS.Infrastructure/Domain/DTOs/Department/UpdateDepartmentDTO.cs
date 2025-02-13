@@ -1,4 +1,4 @@
-﻿namespace GraduationProjecrStore.Infrastructure.Domain.DTOs
+﻿namespace GraduationProjecrStore.Infrastructure.Domain.DTOs.Department
 {
     public class UpdateDepartmentDTO
     {

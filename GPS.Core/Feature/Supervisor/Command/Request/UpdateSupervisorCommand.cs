@@ -11,6 +11,6 @@ namespace GraduationProjectStore.Core.Feature.Supervisors.Command.Request
             this.supervisor = supervisor;
         }
 
-        public UpdateSupervisorDTO supervisor { set; get; }
+        public UpdateSupervisorDTO supervisor { get; }
     }
 }

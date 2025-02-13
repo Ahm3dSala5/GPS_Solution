@@ -9,6 +9,6 @@ namespace GraduationProjectStore.Core.Feature.Departments.Command.Request
         {
             Id = departmentId;
         }
-        public int Id { get; set; }
+        public int Id { get; }
     }
 }

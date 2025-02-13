@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GraduationProjecrStore.Infrastructure.Domain.DTOs
+namespace GraduationProjecrStore.Infrastructure.Domain.DTOs.Department
 {
     public class DepartmentDTO
     {
         public string depatName { set; get; }
-        public string departManager { set; get; }   
+        public string departManager { set; get; }
     }
 }

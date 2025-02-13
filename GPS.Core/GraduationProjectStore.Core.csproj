@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Feature\Project\" />
+    <Folder Include="Feature\Student\Command\Validations\" />
     <Folder Include="Feature\Supervisor\Command\Validations\" />
     <Folder Include="Feature\Department\Command\Validations\" />
   </ItemGroup>

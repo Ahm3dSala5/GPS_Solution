@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Http.Internal;
 
 namespace GraduationProjecrStore.Infrastructure.Domain.Entities.Business
 {
-    public class Project : TableIdentity
+    public sealed class Project : TableIdentity
     {
         public string Description { set; get; }
         public string ContentType { get; set; } 

@@ -1,4 +1,4 @@
-﻿using GraduationProjecrStore.Infrastructure.Domain.DTOs;
+﻿using GraduationProjecrStore.Infrastructure.Domain.DTOs.Department;
 using GraduationProjectStore.Core.ResultHandlers;
 using MediatR;
 
@@ -10,6 +10,6 @@ namespace GraduationProjectStore.Core.Feature.Departments.Command.Request
         {
             Department = createDepartmentDto;
         }
-        public UpdateDepartmentDTO Department { get; set; }
+        public UpdateDepartmentDTO Department { get; }
     }
 }

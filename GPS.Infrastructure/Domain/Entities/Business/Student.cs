@@ -2,7 +2,7 @@
 
 namespace GraduationProjecrStore.Infrastructure.Domain.Entities.Business
 {
-    public class Student : TableIdentity
+    public sealed class Student : TableIdentity
     {
         public string FirstName { set; get; }
         public string LastName { set; get; }
@@ -16,6 +16,5 @@ namespace GraduationProjecrStore.Infrastructure.Domain.Entities.Business
         public int ProjectId { set; get; }
         public Supervisor Supervisor { set; get; }
         public int SupervisorId { set; get; }
-
     }
 }

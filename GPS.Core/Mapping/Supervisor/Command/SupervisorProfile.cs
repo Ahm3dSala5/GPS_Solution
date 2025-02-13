@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GraduationProjecrStore.Infrastructure.Domain.DTOs.Supervisor;
-using GraduationProjecrStore.Infrastructure.Domain.DTOs.Supervisors;
 using GraduationProjecrStore.Infrastructure.Domain.Entities.Business;
 
 namespace GraduationProjectStore.Core.Mapping.Supervisors

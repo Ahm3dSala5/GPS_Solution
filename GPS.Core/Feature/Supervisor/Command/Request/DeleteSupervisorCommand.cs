@@ -10,6 +10,6 @@ namespace GraduationProjectStore.Core.Feature.Supervisors.Command.Request
             this.Id = id;
         }
 
-        public int Id { set; get; }
+        public int Id { get; }
     }
 }

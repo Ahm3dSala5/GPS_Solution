@@ -1,5 +1,5 @@
 ﻿using Graduation_Project_Store.API.Base;
-using GraduationProjecrStore.Infrastructure.Domain.DTOs;
+using GraduationProjecrStore.Infrastructure.Domain.DTOs.Department;
 using GraduationProjectStore.Core.Feature.Departments.Command.Request;
 using GraduationProjectStore.Core.Feature.Departments.Query.Request;
 using Microsoft.AspNetCore.Mvc;

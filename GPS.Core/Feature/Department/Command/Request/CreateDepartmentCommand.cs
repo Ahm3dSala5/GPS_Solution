@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using GraduationProjecrStore.Infrastructure.Domain.DTOs;
+using GraduationProjecrStore.Infrastructure.Domain.DTOs.Department;
 using GraduationProjectStore.Core.ResultHandlers;
 using MediatR;
 
@@ -15,6 +15,6 @@ namespace GraduationProjectStore.Core.Feature.Departments.Command.Request
         {
             Department = department;
         }
-        public DepartmentDTO Department { get; set; }
+        public DepartmentDTO Department { get; }
     }
 }

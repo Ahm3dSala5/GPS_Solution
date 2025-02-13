@@ -2,7 +2,7 @@
 
 namespace GraduationProjecrStore.Infrastructure.Domain.Entities.Business
 {
-    public class Supervisor : TableIdentity 
+    public sealed class Supervisor : TableIdentity 
     {
         public string FirstName { set; get; }
         public string LastName { set; get; }
