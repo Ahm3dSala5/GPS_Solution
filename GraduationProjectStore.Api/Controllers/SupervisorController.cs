@@ -1,6 +1,5 @@
-﻿using Graduation_Project_Store.API.Base;
+﻿using Graduation_Project_Store.API.Bases;
 using GraduationProjecrStore.Infrastructure.Domain.DTOs.Supervisor;
-using GraduationProjecrStore.Infrastructure.Domain.Entities.Business;
 using GraduationProjectStore.Core.Feature.Supervisors.Command.Request;
 using GraduationProjectStore.Core.Feature.Supervisors.Query.Request;
 using Microsoft.AspNetCore.Mvc;
@@ -9,7 +8,7 @@ namespace Graduation_Project_Store.API.Controllers
 {
     [ApiController]
     [Route("api/supervisor")]
-    public class SupervisorController : MainController
+    public class SupervisorController : Base
     {
         [HttpPost("Create")]
         public async Task<IActionResult> Create(CreateSupervisorDTO supervisor)

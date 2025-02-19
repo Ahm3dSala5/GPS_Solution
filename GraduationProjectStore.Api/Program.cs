@@ -3,6 +3,8 @@ using GraduationProjecrStore.Infrastructure.Domain.Entities.Security;
 using GraduationProjecrStore.Infrastructure.Persistence.Context;
 using GraduationProjectStore.Core;
 using GraduationProjectStore.Service;
+using GraduationProjectStore.Service.Abstraction.Security;
+using GraduationProjectStore.Service.Implementation.Security;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -32,7 +34,7 @@ builder.Services.AddServiceModules();
 builder.Services.AddInfrastructureModules();
 builder.Services.AddCoreModules();
 
-
+// test authntication service 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

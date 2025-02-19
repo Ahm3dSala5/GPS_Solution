@@ -5,7 +5,7 @@
         public int Student_Id { set; get; } 
         public string Student_FName { set; get; }
         public string Student_LName { set; get; }
-        public string Student_FAddress { set; get; }
+        public string Student_Address { set; get; }
         public DateTime Student_FBirthDate { set; get; }
         public double Student_GPA { set; get; }
         public int Student_Level { set; get; }

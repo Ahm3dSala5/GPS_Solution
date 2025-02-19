@@ -1,4 +1,4 @@
-﻿using Graduation_Project_Store.API.Base;
+﻿using Graduation_Project_Store.API.Bases;
 using GraduationProjecrStore.Infrastructure.Domain.DTOs.Department;
 using GraduationProjectStore.Core.Feature.Departments.Command.Request;
 using GraduationProjectStore.Core.Feature.Departments.Query.Request;
@@ -8,7 +8,7 @@ namespace Graduation_Project_Store.API.Controllers
 {
     [ApiController]
     [Route("api/department")]
-    public class DepartmentController : MainController
+    public class DepartmentController : Base
     {
         [HttpPost("Create")]
         public async Task<IActionResult>Create(DepartmentDTO department)

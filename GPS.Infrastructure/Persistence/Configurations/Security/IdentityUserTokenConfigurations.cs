@@ -8,7 +8,7 @@ namespace GraduationProjecrStore.Infrastructure.Persistence.Configurations.Secur
     {
         public void Configure(EntityTypeBuilder<IdentityUserToken<Guid>> builder)
         {
-            builder.ToTable("UserToken").HasKey(x => new { x.UserId,x.LoginProvider});
+            builder.ToTable("UserToken").HasKey(x => new { x.UserId,x.LoginProvider,x.Name});
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using GraduationProjectStore.Service.Abstraction.Security;
 
-namespace GraduationProjectStore.Service.Implementation.Business
+namespace GraduationProjectStore.Service.Implementation.Security
 {
     public class AuthorizationService : IAuthorizationService
     {

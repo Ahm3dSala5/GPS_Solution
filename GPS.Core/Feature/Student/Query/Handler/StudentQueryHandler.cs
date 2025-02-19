@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using GraduationProjecrStore.Infrastructure.Domain.Entities.Business;
 using GraduationProjectStore.Core.Feature.Students.Query.Model;
 using GraduationProjectStore.Core.Feature.Students.Query.Request;
 using GraduationProjectStore.Core.ResultHandlers;
@@ -20,16 +21,29 @@ namespace GraduationProjectStore.Core.Feature.Students.Query.Handler
             _mapper = mapper;
         }
 
-        public Task<Result<ICollection<StudentModel>>> Handle
+        public async Task<Result<ICollection<StudentModel>>> Handle
             (GetAllStudentQuery request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var students = await _service.StudentService.GetAll();
+            if (students == null)
+                return BadRequest<ICollection<StudentModel>>(_message:"Faculty Not Has Any Students");
+
+            var studentsMapped = _mapper.Map<ICollection<StudentModel>>(students);
+            return OK<ICollection<StudentModel>>(_data:studentsMapped);  
         }
 
-        public Task<Result<StudentModel>> Handle
+        public async Task<Result<StudentModel>> Handle
             (GetStudentByIdQuery request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            if (request.Id <= 0)
+                return BadRequest<StudentModel>(_message: "Student Not Found");
+
+            var student = await _service.StudentService.GetOne(request.Id);
+            if (student == null)
+                return BadRequest<StudentModel>(_message: "Student Not Found");
+
+            var studentMapped = _mapper.Map<StudentModel>(student);
+            return OK<StudentModel>(_data: studentMapped);
         }
     }
 }

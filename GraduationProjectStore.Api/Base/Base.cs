@@ -3,10 +3,10 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
-namespace Graduation_Project_Store.API.Base
+namespace Graduation_Project_Store.API.Bases
 {
     [ApiController]
-    public class MainController : ControllerBase
+    public class Base : ControllerBase
     {
         private readonly IMediator _mediator;
         protected IMediator? Mediator => _mediator ?? HttpContext.RequestServices.GetService<IMediator>();

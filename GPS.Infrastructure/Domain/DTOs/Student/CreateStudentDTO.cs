@@ -11,8 +11,8 @@ namespace GraduationProjecrStore.Infrastructure.Domain.DTOs.Student
     {
         public string Student_FName { set; get; }
         public string Student_LName { set; get; }
-        public string Student_FAddress { set; get; }
-        public DateTime Student_FBirthDate { set; get; }
+        public string Student_Address { set; get; }
+        public DateTime Student_BirthDate { set; get; }
         public double Student_GPA { set; get; }
         public int Student_Level { set; get; }
         public int Student_DepartmentId { set; get; }

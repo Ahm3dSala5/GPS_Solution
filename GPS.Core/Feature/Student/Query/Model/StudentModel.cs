@@ -11,8 +11,8 @@ namespace GraduationProjectStore.Core.Feature.Students.Query.Model
         public int Student_Id {set;get;}
         public string Student_FName { get; }
         public string Student_LName { get; }
-        public string Student_FAddress { get; }
-        public DateTime Student_FBirthDate { set; get; }
+        public string Student_Address { get; }
+        public DateTime Student_BirthDate { set; get; }
         public double Student_GPA { get; }
         public int Student_Level { get; }
         public int Student_DepartmentId { get; }

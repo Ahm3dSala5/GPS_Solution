@@ -8,14 +8,14 @@ using GraduationProjecrStore.Infrastructure.Persistence.Context;
 using GraduationProjecrStore.Infrastructure.Repository;
 using GraduationProjectStore.Service.Abstraction.Business;
 
-namespace GraduationProjectStore.Service.Implementation.Security
+namespace GraduationProjectStore.Service.Implementation.Business
 {
-    public class StudentService : MainRepository<Student> , IStudentService
+    public class StudentService : MainRepository<Student>, IStudentService
     {
         private readonly AppDbContext _app;
         public StudentService(AppDbContext app) : base(app)
         {
-            this._app = app;
+            _app = app;
         }
     }
 }
