@@ -18,7 +18,7 @@ namespace GraduationProjectStore.Service.Implementation.Security
         public async ValueTask<string> SendMail(string email, string subject, string message)
         {
             // for use get u must install microsoft.extensions.binder
-            var smtpOptions = _config.GetSection("SMTP").Get<SMTPConfigurationOptions>();
+            var smtpOptions = _config.GetSection("SMTP").Get<SMTPOptions>();
 
             if (email == null || subject == null || message == null)
                 return "Invalid Data Message";

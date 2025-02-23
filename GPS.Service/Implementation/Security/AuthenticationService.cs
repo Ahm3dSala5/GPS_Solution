@@ -1,48 +1,117 @@
 ﻿using GraduationProjecrStore.Infrastructure.Domain.DTOs.Authentication;
 using GraduationProjecrStore.Infrastructure.Domain.Entities.Security;
+using GraduationProjecrStore.Infrastructure.Persistence.Context;
+using GraduationProjecrStore.Infrastructure.Repository;
 using GraduationProjectStore.Service.Abstraction.Security;
 using GraduationProjectStore.Service.Implementation.Business.Helper;
-using GraduationProjectStore.Service.Implementation.Security.Helper;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Configuration;
 
 namespace GraduationProjectStore.Service.Implementation.Security
 {
-    public class AuthenticationService : IAuthenticationService
+    public class AuthenticationService : MainRepository<ApplicationUser>, IAuthenticationService
     {
         private readonly IMailService _mail;
+        private readonly IConfiguration _config;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
+
         public AuthenticationService
-            (UserManager<ApplicationUser> user, IMailService mail)
+            (UserManager<ApplicationUser> user, IMailService mail, SignInManager<ApplicationUser> signInManager,
+            IConfiguration config, AppDbContext context) :base(context)
         {
             this._userManager = user;
-           this._mail = mail;
+            this._mail = mail;
+            this._signInManager = signInManager;
+            this._config = config;
         }
 
-
-        public ValueTask<string> ChangePasswordAsync
+        public async ValueTask<string> ChangePasswordAsync
             (ChangePassowrdDTO changePassword)
         {
-            throw new NotImplementedException();
+            var user = await _userManager.FindByNameAsync(changePassword.UserName);
+            if(user == null)
+                return "NotFound";
+
+            var checkPassword = await  _userManager.CheckPasswordAsync(user,changePassword.Password);
+            if (!checkPassword)
+                return "Invalid Password";
+
+            var resetToken = await _userManager.GeneratePasswordResetTokenAsync(user);
+            var changeProcess = await _userManager.ResetPasswordAsync(user,resetToken,changePassword.Password);
+            return changeProcess.Succeeded ? "Successfully" : "Wrong";
         }
 
-        public ValueTask<string> ConfirmForgetPasswordAsync(ConfirmForgetPasswordDTO confirmforgetPassword)
+        public async ValueTask<object> ConfirmForgetPasswordAsync
+            (ConfirmForgotPasswordDTO confirmforgetPassword)
         {
-            throw new NotImplementedException();
+            var user =  await _userManager.FindByNameAsync(confirmforgetPassword.UserName);
+            if (user == null)
+                return "NotFound";
+
+            var code = await _userManager.GetAuthenticationTokenAsync
+                (user, "ConfirmationCode", "ConfirmationCode");
+            if(confirmforgetPassword.ConfirmationCode != code)
+                return "Invalid";
+
+            return UserHelper.GenerateToken(_config, user, await _userManager.GetRolesAsync(user)); 
         }
 
-        public ValueTask<string> ConfirmRegisterAsync(string username, string confirmationCode)
+        public async ValueTask<object> ConfirmRegisterAsync(string username, string confirmationCode)
         {
-            throw new NotImplementedException();
+            var user = await _userManager.FindByNameAsync(username);
+            if (user == null)
+                return "NotFound";
+
+            var code = await _userManager.GetAuthenticationTokenAsync
+                (user, "ConfirmationCode", "ConfirmationCode");
+
+            if(code != confirmationCode)
+                return "Invalid";
+
+            await _signInManager.SignInAsync(user,true);
+            var roles = await _userManager.GetRolesAsync(user);
+
+            return  UserHelper.GenerateToken(_config, user,roles);
         }
 
-        public ValueTask<string> ForgetPasswordAsync(string username)
+        public async ValueTask<string> DeleteUserAsync(string username)
         {
-            throw new NotImplementedException();
+            var user = await _userManager.FindByNameAsync(username);
+            if (user == null)
+                return "NotFound";
+
+            var deleteResult = await _userManager.DeleteAsync(user);
+            return deleteResult.Succeeded ? "Successfully" : "Invalid";
         }
 
-        public ValueTask<string> LoginAsync(LoginDTO user)
+        public async ValueTask<string> ForgetPasswordAsync(string username)
         {
-            throw new NotImplementedException();
+            var user = await _userManager.FindByNameAsync(username);
+            if (user == null)
+                return "NotFound";
+
+            return await UserHelper.GenerateConfirmationCode(user, _mail, _userManager);    
+        }
+
+        public async ValueTask<ApplicationUser> GetUserByNameAsync(string username)
+        {
+            return await _userManager.FindByNameAsync(username);
+        }
+
+        public async ValueTask<object> LoginAsync(LoginDTO user)
+        {
+            var _user = await _userManager.FindByNameAsync(user.UserName);
+            if(_user == null)
+                return "NotFound";
+
+            var checkPassword = await _userManager.CheckPasswordAsync(_user, user.Password);
+            if (!checkPassword)
+                return "Invalid";
+
+            await _signInManager.SignInAsync(_user,user.RememberMe);
+            var roles = await _userManager.GetRolesAsync(_user);
+            return UserHelper.GenerateToken(_config, _user, roles);
         }
 
         public async ValueTask<string> RegisterAsync(RegisterDTO user)

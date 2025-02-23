@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using GraduationProjectStore.Core.Feature.Authentications.Query.Request;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,6 +20,7 @@ namespace GraduationProjectStore.Core
                     options.Password.RequireNonAlphanumeric = false;
                     options.Password.RequireLowercase = false;
                     options.Password.RequireUppercase = false;
+                    options.Password.RequireDigit = false;
                 }
             );
 
