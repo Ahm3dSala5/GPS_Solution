@@ -6,30 +6,74 @@ namespace GraduationProjectStore.Service.Implementation.Security
 {
     public class AuthorizationService : IAuthorizationService
     {
-        private readonly SignInManager<ApplicationUser> _signInManager;
-        public AuthorizationService(SignInManager<ApplicationUser> siginInManager) 
+        private readonly RoleManager<ApplicationRole> _roleManager;
+        private readonly UserManager<ApplicationUser> _userManager;
+        public AuthorizationService
+            (RoleManager<ApplicationRole> roleManager, UserManager<ApplicationUser> userManager)
         {
-            this._signInManager = siginInManager;
+            this._roleManager = roleManager;
+            this._userManager = userManager;
         }
 
-        public ValueTask<string> AssignRoleToUserAsync(string username, string rolename)
+        public async ValueTask<string> AssignRoleToUserAsync(string username, string rolename)
         {
-            throw new NotImplementedException();
+            var user = await _userManager.FindByNameAsync(username);
+            if (user == null)
+                return "NotFound";
+
+            var role = await _roleManager.FindByNameAsync(rolename);
+            if (role == null)
+                return "NotFound";
+
+            var inRole = await _userManager.IsInRoleAsync(user,rolename);
+            if (inRole)
+                return "UserInRole";
+          
+            var assignToRoleResult =  await _userManager.AddToRoleAsync(user,rolename);
+            return assignToRoleResult.Succeeded ? "Successfully" : "Invalid";
         }
 
-        public ValueTask<string> CreateRoleAsync(string username)
+        public async ValueTask<string> CreateRoleAsync(string rolename)
         {
-            throw new NotImplementedException();
+            var existedRole = await _roleManager.RoleExistsAsync(rolename);
+            if (existedRole)
+                return "RoleExisted";
+
+            var role = new ApplicationRole()
+            {
+                Name = rolename
+            };
+
+            var createResult = await _roleManager.CreateAsync(role);
+            return createResult.Succeeded ? "Successfully" : "Invalid";
         }
 
-        public ValueTask<string> RemoveRoleAsync(string roleName)
+        public async ValueTask<string> RemoveRoleAsync(string roleName)
         {
-            throw new NotImplementedException();
+            var role = await _roleManager.FindByNameAsync(roleName);
+            if (role == null)
+                return "NotFound";
+
+            var deleteResult = await _roleManager.DeleteAsync(role);
+            return deleteResult.Succeeded ? "Successfully" : "Invalid";
         }
 
-        public ValueTask<string> RemoveUserFromRole(string username, string rolename)
+        public async ValueTask<string> RemoveUserFromRole(string username, string rolename)
         {
-            throw new NotImplementedException();
+            var user = await _userManager.FindByNameAsync(username);
+            if (user == null)
+                return "NotFound";
+
+            var role = await _roleManager.FindByNameAsync(rolename);
+            if (role == null)
+                return "NotFound";
+
+            var inRole = await _userManager.IsInRoleAsync(user, rolename);
+            if (!inRole)
+                return "UserNotInRole";
+
+            var removeFromRoleResult = await _userManager.RemoveFromRoleAsync(user, rolename);
+            return removeFromRoleResult.Succeeded ? "Successfully" : "Invalid";
         }
     }
 }
