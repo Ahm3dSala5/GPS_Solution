@@ -19,11 +19,11 @@ namespace GraduationProjectStore.Service.Implementation.Security
         {
             var user = await _userManager.FindByNameAsync(username);
             if (user == null)
-                return "NotFound";
+                return "UserNotFound";
 
             var role = await _roleManager.FindByNameAsync(rolename);
             if (role == null)
-                return "NotFound";
+                return "RoleNotFound";
 
             var inRole = await _userManager.IsInRoleAsync(user,rolename);
             if (inRole)
