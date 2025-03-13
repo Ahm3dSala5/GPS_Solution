@@ -27,6 +27,7 @@ namespace GraduationProjectStore.Core
             // to register mapper and mediatr
             service.AddMediatR(Assembly.GetExecutingAssembly());
             service.AddAutoMapper(Assembly.GetExecutingAssembly());
+
         }
     }
 }

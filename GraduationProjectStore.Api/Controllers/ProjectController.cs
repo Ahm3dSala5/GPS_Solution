@@ -17,11 +17,32 @@ namespace Graduation_Project_Store.API.Controllers
             return HandledResult(createCommand);
         }
 
-        [HttpGet("Get/{id}")]
+        [HttpGet("Get/ById")]
         public async Task<IActionResult> Get(int id)
         {
             var getCommand = await Mediator.Send(new GetProjectByIdQuery(id));
             return HandledResult(getCommand);
+        }
+
+        [HttpGet("Get/ByYear")]
+        public async Task<IActionResult> GetByYear(int Year)
+        {
+            var getByYear = await Mediator.Send(new GetProjectByYearQuery(Year));
+            return HandledResult(getByYear);
+        }
+
+        [HttpGet("Get/ByDepartment")]
+        public async Task<IActionResult> GetByDepartment(int id)
+        {
+            var getBydepartment = await Mediator.Send(new GetProjectByDepartmentQuery(id));
+            return HandledResult(getBydepartment);
+        }
+
+        [HttpGet("Get/BySupervisor")]
+        public async Task<IActionResult> GetBySupervisor(int id)
+        {
+            var getBysupervisor = await Mediator.Send(new GetProjectBySupervisorQuery(id));
+            return HandledResult(getBysupervisor);
         }
 
         [HttpGet("GetAll")]

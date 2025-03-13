@@ -9,6 +9,7 @@ using GraduationProjectStore.Core.Feature.Projects.Command.Request;
 using GraduationProjectStore.Core.ResultHandlers;
 using GraduationProjectStore.Service.UnitOfWorks;
 using MediatR;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace GraduationProjectStore.Core.Feature.Projects.Command.Handler
 {
@@ -34,8 +35,20 @@ namespace GraduationProjectStore.Core.Feature.Projects.Command.Handler
             if (request.projectDTO == null)
                 return BadRequest<string>(_message:"Invalid Project Data");
 
-            var project = _mapper.Map<Project>(request.projectDTO);
-            var createOperation = await _service.ProjectService.CreateAsync(project);
+            var _project = new Project();
+            using (var memoryStream = new MemoryStream())
+            {
+                await request.projectDTO.projectFile.CopyToAsync(memoryStream);
+                _project.Name = request.projectDTO.projectFile.Name;
+                _project.Data = memoryStream.ToArray();
+                _project.ContentType = request.projectDTO.projectFile.ContentType;
+                _project.DepartmentId = request.projectDTO.DepartmentId;
+                _project.SupervisorId = request.projectDTO.SupervisorId;
+                _project.UploadAt = DateTime.UtcNow;
+                _project.Description = request.projectDTO.Description;
+            }
+
+            var createOperation = await _service.ProjectService.CreateAsync(_project);
 
             return createOperation == "Successfully" ? 
                 OK<string>(_message: "Project Created Successfully") : 

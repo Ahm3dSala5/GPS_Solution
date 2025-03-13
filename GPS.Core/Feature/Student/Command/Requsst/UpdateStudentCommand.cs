@@ -13,4 +13,7 @@ namespace GraduationProjectStore.Core.Feature.Students.Command.Requsst
 
         public UpdateStudentDTO Student { get; }
     }
+
+    
 }
+
