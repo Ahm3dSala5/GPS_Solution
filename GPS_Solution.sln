@@ -15,8 +15,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraduationProjectStore.Core
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graduation Project Store.API", "GraduationProjectStore.Api\Graduation Project Store.API.csproj", "{D88AB1F0-B915-4F1B-8B40-973811E26D84}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraduationProjectStore.MVC", "GraduationProjectStore.MVC\GraduationProjectStore.MVC.csproj", "{1FCDE2BA-B743-47CF-BEE8-4DE6E6DFFE37}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,10 +37,6 @@ Global
 		{D88AB1F0-B915-4F1B-8B40-973811E26D84}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D88AB1F0-B915-4F1B-8B40-973811E26D84}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D88AB1F0-B915-4F1B-8B40-973811E26D84}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1FCDE2BA-B743-47CF-BEE8-4DE6E6DFFE37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1FCDE2BA-B743-47CF-BEE8-4DE6E6DFFE37}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1FCDE2BA-B743-47CF-BEE8-4DE6E6DFFE37}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1FCDE2BA-B743-47CF-BEE8-4DE6E6DFFE37}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -52,6 +46,5 @@ Global
 		{FF98228A-ADD4-4008-9596-0EA02BD0D64A} = {D1A64DFE-DAA1-4CD8-916F-C7CBDDA970BD}
 		{1DDC8B3E-BA49-4215-A636-F090C95C9DC5} = {D1A64DFE-DAA1-4CD8-916F-C7CBDDA970BD}
 		{D88AB1F0-B915-4F1B-8B40-973811E26D84} = {99A1A4A6-2261-4756-BC5E-22426EB6160A}
-		{1FCDE2BA-B743-47CF-BEE8-4DE6E6DFFE37} = {99A1A4A6-2261-4756-BC5E-22426EB6160A}
 	EndGlobalSection
 EndGlobal

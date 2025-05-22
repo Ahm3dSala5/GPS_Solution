@@ -24,34 +24,6 @@ namespace Graduation_Project_Store.API.Controllers
             return HandledResult(getCommand);
         }
 
-        [HttpGet("Get/ByYear")]
-        public async Task<IActionResult> GetByYear(int Year)
-        {
-            var getByYear = await Mediator.Send(new GetProjectByYearQuery(Year));
-            return HandledResult(getByYear);
-        }
-
-        [HttpGet("Get/ByDepartment")]
-        public async Task<IActionResult> GetByDepartment(int id)
-        {
-            var getBydepartment = await Mediator.Send(new GetProjectByDepartmentQuery(id));
-            return HandledResult(getBydepartment);
-        }
-
-        [HttpGet("Get/BySupervisor")]
-        public async Task<IActionResult> GetBySupervisor(int id)
-        {
-            var getBysupervisor = await Mediator.Send(new GetProjectBySupervisorQuery(id));
-            return HandledResult(getBysupervisor);
-        }
-
-        [HttpGet("GetAll")]
-        public async Task<IActionResult> GetAll()
-        {
-            var getAllCommand = await Mediator.Send(new GetAllProjectQuery());
-            return HandledResult(getAllCommand);
-        }
-
         [HttpPut("Update")]
         public async Task<IActionResult> Update(UpdateProjectDTO project)
         {
