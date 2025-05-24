@@ -1,4 +1,5 @@
-﻿using Graduation_Project_Store.API.Bases;
+﻿using System.Net;
+using Graduation_Project_Store.API.Bases;
 using GraduationProjecrStore.Infrastructure.Persistence.Context;
 using GraduationProjectStore.Core.Feature.Projects.Query.Request;
 using Microsoft.AspNetCore.Mvc;
@@ -55,10 +56,21 @@ namespace Graduation_Project_Store.API.Controllers
         }
 
         [HttpGet("Get/College")]
-        public async Task<IActionResult> GetBySupervisor(int id)
+        public IActionResult GetByCollege(int id)
         {
-            var getBysupervisor = await Mediator.Send(new GetProjectBySupervisorQuery(id));
-            return HandledResult(getBysupervisor);
+           if(!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var projects = _context.Projects.Where(x=>x.CollegeId == id);
+            
+            return projects.Any()
+                ? Ok( new 
+                {
+                    Data = projects,
+                    StatusCode = HttpStatusCode.OK,
+                    NumOfProjects = projects.Count(),
+                })
+                : NotFound($"No projects found for college with ID {id}.");
         }
 
         [HttpGet("GetAll")]

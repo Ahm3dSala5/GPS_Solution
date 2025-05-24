@@ -21,7 +21,7 @@ namespace GraduationProjecrStore.Infrastructure.Persistence.Configurations.Busin
             builder.HasOne(x=>x.Project)
                 .WithMany(x=>x.Students)
                .HasForeignKey(x => x.ProjectId)
-                .IsRequired(true)
+                .IsRequired(false)
                 .OnDelete(DeleteBehavior.Restrict);
 
             // one to many with supervisor 

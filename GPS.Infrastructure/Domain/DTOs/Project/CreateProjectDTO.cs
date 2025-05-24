@@ -15,5 +15,6 @@ namespace GraduationProjectStore.Core.Feature.Projects
         public IFormFile projectFile { set; get; }
         public int SupervisorId { set; get; }
         public int DepartmentId { set; get; }
+        public int CollegeId { set; get; }
     }
 }

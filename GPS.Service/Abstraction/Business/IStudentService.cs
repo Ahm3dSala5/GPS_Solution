@@ -8,4 +8,3 @@ namespace GraduationProjectStore.Service.Abstraction.Business
 
     }
 }
-

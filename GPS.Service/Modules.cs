@@ -13,6 +13,7 @@ namespace GraduationProjectStore.Service
         {
             service.AddTransient<IUnitOfWork, UnitOfWork>();
             service.AddTransient<IMailService, MailService>();
+            service.AddTransient<IContactService, ContactServive>();
             service.AddTransient<IStudentService, StudentService>();
             service.AddTransient<IProjectService, ProjectService>();
             service.AddTransient<ISupervisorService, SupervisorService>();

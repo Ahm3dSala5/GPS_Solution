@@ -16,6 +16,12 @@ namespace GraduationProjecrStore.Infrastructure.Persistence.Configurations.Busin
               .HasForeignKey(x => x.DepartmentId)
               .OnDelete(DeleteBehavior.Restrict)
               .IsRequired(true);
+
+            builder.HasOne(x => x.College)
+               .WithMany(x => x.Projects)
+               .HasForeignKey(x => x.CollegeId)
+               .OnDelete(DeleteBehavior.Restrict)
+               .IsRequired(true);
         }
     }
 }

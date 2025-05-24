@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GraduationProjecrStore.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250219144246_AddCompositeKeyForUserToken")]
-    partial class AddCompositeKeyForUserToken
+    [Migration("20250524014031_Data_Seeder")]
+    partial class Data_Seeder
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,73 @@ namespace GraduationProjecrStore.Infrastructure.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("GraduationProjecrStore.Infrastructure.Domain.Entities.Business.College", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("College", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Computer Science"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Science"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Engineering"
+                        });
+                });
+
+            modelBuilder.Entity("GraduationProjecrStore.Infrastructure.Domain.Entities.Business.Contact", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Contact", (string)null);
+                });
 
             modelBuilder.Entity("GraduationProjecrStore.Infrastructure.Domain.Entities.Business.Department", b =>
                 {
@@ -43,6 +110,32 @@ namespace GraduationProjecrStore.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Department", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Manager = "Nabil Mustafa",
+                            Name = "IS"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Manager = "Ehab Rushdy",
+                            Name = "IT"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Manager = "Mohamed ElMahdy",
+                            Name = "CS"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Manager = "Ahmed ElSayed",
+                            Name = "DS"
+                        });
                 });
 
             modelBuilder.Entity("GraduationProjecrStore.Infrastructure.Domain.Entities.Business.Project", b =>
@@ -53,19 +146,20 @@ namespace GraduationProjecrStore.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("ContentType")
+                    b.Property<int?>("CollegeId")
                         .IsRequired()
+                        .HasColumnType("int");
+
+                    b.Property<string>("ContentType")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<byte[]>("Data")
-                        .IsRequired()
                         .HasColumnType("varbinary(max)");
 
                     b.Property<int>("DepartmentId")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -79,11 +173,39 @@ namespace GraduationProjecrStore.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CollegeId");
+
                     b.HasIndex("DepartmentId");
 
                     b.HasIndex("SupervisorId");
 
                     b.ToTable("Project", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CollegeId = 1,
+                            DepartmentId = 1,
+                            SupervisorId = 1,
+                            UploadAt = new DateTime(2025, 4, 24, 4, 40, 30, 280, DateTimeKind.Local).AddTicks(6185)
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CollegeId = 2,
+                            DepartmentId = 2,
+                            SupervisorId = 2,
+                            UploadAt = new DateTime(2025, 5, 4, 4, 40, 30, 280, DateTimeKind.Local).AddTicks(6315)
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CollegeId = 3,
+                            DepartmentId = 3,
+                            SupervisorId = 3,
+                            UploadAt = new DateTime(2025, 5, 14, 4, 40, 30, 280, DateTimeKind.Local).AddTicks(6332)
+                        });
                 });
 
             modelBuilder.Entity("GraduationProjecrStore.Infrastructure.Domain.Entities.Business.Student", b =>
@@ -121,7 +243,7 @@ namespace GraduationProjecrStore.Infrastructure.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ProjectId")
+                    b.Property<int?>("ProjectId")
                         .HasColumnType("int");
 
                     b.Property<int>("SupervisorId")
@@ -136,6 +258,47 @@ namespace GraduationProjecrStore.Infrastructure.Migrations
                     b.HasIndex("SupervisorId");
 
                     b.ToTable("Student", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Address = "Nasr City, Cairo",
+                            BirthDate = new DateTime(2002, 4, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DepartmentId = 1,
+                            FirstName = "Omar",
+                            GPA = 3.7000000000000002,
+                            LastName = "Mahmoud",
+                            Level = 4,
+                            ProjectId = 1,
+                            SupervisorId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Address = "Maadi, Cairo",
+                            BirthDate = new DateTime(2001, 9, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DepartmentId = 2,
+                            FirstName = "Salma",
+                            GPA = 3.8999999999999999,
+                            LastName = "Hussein",
+                            Level = 4,
+                            ProjectId = 2,
+                            SupervisorId = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Address = "Giza, El Haram",
+                            BirthDate = new DateTime(2003, 2, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DepartmentId = 3,
+                            FirstName = "Youssef",
+                            GPA = 3.3999999999999999,
+                            LastName = "Tariq",
+                            Level = 3,
+                            ProjectId = 3,
+                            SupervisorId = 3
+                        });
                 });
 
             modelBuilder.Entity("GraduationProjecrStore.Infrastructure.Domain.Entities.Business.Supervisor", b =>
@@ -176,6 +339,38 @@ namespace GraduationProjecrStore.Infrastructure.Migrations
                     b.HasIndex("DepartmentId");
 
                     b.ToTable("Supervisor", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Address = "Cairo University, Building A",
+                            BirthDate = new DateTime(1975, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DepartmentId = 1,
+                            FirstName = "Ahmed",
+                            LastName = "Youssef",
+                            Position = "Professor"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Address = "Ain Shams University, Building B",
+                            BirthDate = new DateTime(1980, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DepartmentId = 2,
+                            FirstName = "Fatima",
+                            LastName = "Ali",
+                            Position = "Associate Professor"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Address = "Alexandria University, Building C",
+                            BirthDate = new DateTime(1990, 3, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DepartmentId = 3,
+                            FirstName = "Mohamed",
+                            LastName = "Hassan",
+                            Position = "Assistant Lecturer"
+                        });
                 });
 
             modelBuilder.Entity("GraduationProjecrStore.Infrastructure.Domain.Entities.Security.ApplicationRole", b =>
@@ -253,6 +448,26 @@ namespace GraduationProjecrStore.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("User", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("883d4839-63e5-48c9-817a-361957533f2b"),
+                            AccessFailedCount = 0,
+                            Address = "123 Main St",
+                            ConcurrencyStamp = "c7de6551-09be-42f3-bf83-3dc2adb87507",
+                            Email = "testuser@example.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "TESTUSER@EXAMPLE.COM",
+                            NormalizedUserName = "TESTUSER",
+                            PasswordHash = "AQAAAAIAAYagAAAAEGAhalghxp5XDOOZIkky90R41Tsl0EhzfJARDz/56TWed+wlE9285sOzeleI/asbDQ==",
+                            PhoneNumber = "1234567890",
+                            PhoneNumberConfirmed = true,
+                            SecurityStamp = "9ab0dced-bdb2-496b-95f3-279aec802cb0",
+                            TwoFactorEnabled = false,
+                            UserName = "testuser"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
@@ -347,8 +562,25 @@ namespace GraduationProjecrStore.Infrastructure.Migrations
                     b.ToTable("UserToken", (string)null);
                 });
 
+            modelBuilder.Entity("GraduationProjecrStore.Infrastructure.Domain.Entities.Business.Contact", b =>
+                {
+                    b.HasOne("GraduationProjecrStore.Infrastructure.Domain.Entities.Security.ApplicationUser", "User")
+                        .WithMany("Contacts")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("GraduationProjecrStore.Infrastructure.Domain.Entities.Business.Project", b =>
                 {
+                    b.HasOne("GraduationProjecrStore.Infrastructure.Domain.Entities.Business.College", "College")
+                        .WithMany("Projects")
+                        .HasForeignKey("CollegeId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("GraduationProjecrStore.Infrastructure.Domain.Entities.Business.Department", "Department")
                         .WithMany("Projects")
                         .HasForeignKey("DepartmentId")
@@ -360,6 +592,8 @@ namespace GraduationProjecrStore.Infrastructure.Migrations
                         .HasForeignKey("SupervisorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("College");
 
                     b.Navigation("Department");
 
@@ -377,8 +611,7 @@ namespace GraduationProjecrStore.Infrastructure.Migrations
                     b.HasOne("GraduationProjecrStore.Infrastructure.Domain.Entities.Business.Project", "Project")
                         .WithMany("Students")
                         .HasForeignKey("ProjectId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("GraduationProjecrStore.Infrastructure.Domain.Entities.Business.Supervisor", "Supervisor")
                         .WithMany("Students")
@@ -404,6 +637,11 @@ namespace GraduationProjecrStore.Infrastructure.Migrations
                     b.Navigation("Department");
                 });
 
+            modelBuilder.Entity("GraduationProjecrStore.Infrastructure.Domain.Entities.Business.College", b =>
+                {
+                    b.Navigation("Projects");
+                });
+
             modelBuilder.Entity("GraduationProjecrStore.Infrastructure.Domain.Entities.Business.Department", b =>
                 {
                     b.Navigation("Projects");
@@ -423,6 +661,11 @@ namespace GraduationProjecrStore.Infrastructure.Migrations
                     b.Navigation("Projects");
 
                     b.Navigation("Students");
+                });
+
+            modelBuilder.Entity("GraduationProjecrStore.Infrastructure.Domain.Entities.Security.ApplicationUser", b =>
+                {
+                    b.Navigation("Contacts");
                 });
 #pragma warning restore 612, 618
         }

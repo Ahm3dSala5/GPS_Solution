@@ -12,7 +12,8 @@ namespace GraduationProjectStore.Core.Mapping.Projects
         public ProjectProfile() 
         {
             GetProjectsQueryMapping();
-            //UpdateProjectCommandMapping();
+            UpdateProjectCommandMapping();
+            CreateProjectCommandMapping();
         }
     }
 }

@@ -12,9 +12,11 @@ namespace GraduationProjecrStore.Infrastructure.Domain.Entities.Business
         public int Level { set; get; }
         public Department Department { set; get; }
         public int DepartmentId { set; get; }   
-        public Project Project { set; get; }    
-        public int ProjectId { set; get; }
+        public Project? Project { set; get; }    
+        public int ?ProjectId { set; get; }
         public Supervisor Supervisor { set; get; }
         public int SupervisorId { set; get; }
     }
 }
+
+

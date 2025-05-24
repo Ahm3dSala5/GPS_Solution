@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GraduationProjecrStore.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250211125103_CreateApp")]
-    partial class CreateApp
+    [Migration("20250524012829_Nullable_projectFile")]
+    partial class Nullable_projectFile
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,57 @@ namespace GraduationProjecrStore.Infrastructure.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("GraduationProjecrStore.Infrastructure.Domain.Entities.Business.College", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("College", (string)null);
+                });
+
+            modelBuilder.Entity("GraduationProjecrStore.Infrastructure.Domain.Entities.Business.Contact", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Contact", (string)null);
+                });
 
             modelBuilder.Entity("GraduationProjecrStore.Infrastructure.Domain.Entities.Business.Department", b =>
                 {
@@ -53,19 +104,20 @@ namespace GraduationProjecrStore.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("ContentType")
+                    b.Property<int?>("CollegeId")
                         .IsRequired()
+                        .HasColumnType("int");
+
+                    b.Property<string>("ContentType")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<byte[]>("Data")
-                        .IsRequired()
                         .HasColumnType("varbinary(max)");
 
                     b.Property<int>("DepartmentId")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -78,6 +130,8 @@ namespace GraduationProjecrStore.Infrastructure.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CollegeId");
 
                     b.HasIndex("DepartmentId");
 
@@ -121,7 +175,7 @@ namespace GraduationProjecrStore.Infrastructure.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ProjectId")
+                    b.Property<int?>("ProjectId")
                         .HasColumnType("int");
 
                     b.Property<int>("SupervisorId")
@@ -253,6 +307,26 @@ namespace GraduationProjecrStore.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("User", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("cdb5a13c-0377-481e-8363-6f8752914c70"),
+                            AccessFailedCount = 0,
+                            Address = "123 Main St",
+                            ConcurrencyStamp = "be0a0bf1-5711-4b4c-acee-35c3de7119e4",
+                            Email = "testuser@example.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "TESTUSER@EXAMPLE.COM",
+                            NormalizedUserName = "TESTUSER",
+                            PasswordHash = "AQAAAAIAAYagAAAAEEaKcyIHO3g96MdeytFTjea3UDvFvks41PpdwBAIw+TvdNsaxXGVY3chse9SozS4tQ==",
+                            PhoneNumber = "1234567890",
+                            PhoneNumberConfirmed = true,
+                            SecurityStamp = "b0191520-3bf5-44f4-a499-ef96f226bc80",
+                            TwoFactorEnabled = false,
+                            UserName = "testuser"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
@@ -337,19 +411,35 @@ namespace GraduationProjecrStore.Infrastructure.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("UserId", "LoginProvider");
+                    b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("UserToken", (string)null);
                 });
 
+            modelBuilder.Entity("GraduationProjecrStore.Infrastructure.Domain.Entities.Business.Contact", b =>
+                {
+                    b.HasOne("GraduationProjecrStore.Infrastructure.Domain.Entities.Security.ApplicationUser", "User")
+                        .WithMany("Contacts")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("GraduationProjecrStore.Infrastructure.Domain.Entities.Business.Project", b =>
                 {
+                    b.HasOne("GraduationProjecrStore.Infrastructure.Domain.Entities.Business.College", "College")
+                        .WithMany("Projects")
+                        .HasForeignKey("CollegeId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("GraduationProjecrStore.Infrastructure.Domain.Entities.Business.Department", "Department")
                         .WithMany("Projects")
                         .HasForeignKey("DepartmentId")
@@ -361,6 +451,8 @@ namespace GraduationProjecrStore.Infrastructure.Migrations
                         .HasForeignKey("SupervisorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("College");
 
                     b.Navigation("Department");
 
@@ -378,8 +470,7 @@ namespace GraduationProjecrStore.Infrastructure.Migrations
                     b.HasOne("GraduationProjecrStore.Infrastructure.Domain.Entities.Business.Project", "Project")
                         .WithMany("Students")
                         .HasForeignKey("ProjectId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("GraduationProjecrStore.Infrastructure.Domain.Entities.Business.Supervisor", "Supervisor")
                         .WithMany("Students")
@@ -405,6 +496,11 @@ namespace GraduationProjecrStore.Infrastructure.Migrations
                     b.Navigation("Department");
                 });
 
+            modelBuilder.Entity("GraduationProjecrStore.Infrastructure.Domain.Entities.Business.College", b =>
+                {
+                    b.Navigation("Projects");
+                });
+
             modelBuilder.Entity("GraduationProjecrStore.Infrastructure.Domain.Entities.Business.Department", b =>
                 {
                     b.Navigation("Projects");
@@ -424,6 +520,11 @@ namespace GraduationProjecrStore.Infrastructure.Migrations
                     b.Navigation("Projects");
 
                     b.Navigation("Students");
+                });
+
+            modelBuilder.Entity("GraduationProjecrStore.Infrastructure.Domain.Entities.Security.ApplicationUser", b =>
+                {
+                    b.Navigation("Contacts");
                 });
 #pragma warning restore 612, 618
         }

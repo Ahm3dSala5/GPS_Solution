@@ -1,4 +1,5 @@
 ﻿using GraduationProjecrStore.Infrastructure.Domain.Entities.Business.Common;
+using Microsoft.Identity.Client;
 
 namespace GraduationProjecrStore.Infrastructure.Domain.Entities.Business
 {

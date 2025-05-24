@@ -15,6 +15,7 @@ namespace GraduationProjectStore.Service.UnitOfWorks
             this.ProjectService = new ProjectService(_app);
             this.DepartmentService = new DepartmentService(_app);
             this.SupervisorService = new SupervisorService(_app);
+            this.ContactService = new ContactServive(_app);
         }
 
         public IDepartmentService DepartmentService { get;  set; }
@@ -24,6 +25,8 @@ namespace GraduationProjectStore.Service.UnitOfWorks
         public IProjectService ProjectService  { get;  set; }
 
         public ISupervisorService SupervisorService { get; set; }
+
+        public IContactService ContactService { set; get; }
 
         public void Dispose()
         {
