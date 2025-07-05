@@ -44,5 +44,6 @@ namespace Graduation_Project_Store.API.Controllers
             var deleteCommand = await Mediator.Send(new DeleteDepartmentCommand(id));
             return HandledResult(deleteCommand);
         }
+
     }
 }

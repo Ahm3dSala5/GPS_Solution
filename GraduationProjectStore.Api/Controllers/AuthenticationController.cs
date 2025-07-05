@@ -17,7 +17,6 @@ namespace Graduation_Project_Store.API.Controllers
             return HandledResult(registerCommand);
         }
 
-
         [HttpPost("Confirm-Registration")]
         public async Task<IActionResult> ConfirmRegistration(string username, string confirmationcode)
         {
@@ -26,10 +25,13 @@ namespace Graduation_Project_Store.API.Controllers
         }
 
         [HttpPost("Login")]
-        public async Task<IActionResult> Login(LoginDTO user)
+        public async Task<IActionResult> Login([FromForm]LoginDTO user)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
             var loginCommand = await Mediator.Send(new LoginUserCommand(user));
-            return HandledResult(loginCommand);
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpPost("Forgot-Password-Request")]

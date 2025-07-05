@@ -11,7 +11,6 @@ namespace GraduationProjectStore.Core.Mapping.Students
             CreateMap<Student, CreateStudentDTO>().
                 ForMember(x => x.Student_SupervisorId, x => x.MapFrom(x => x.SupervisorId)).
                 ForMember(x => x.Student_DepartmentId, x => x.MapFrom(x => x.DepartmentId)).
-                ForMember(x => x.Student_ProjectId, x => x.MapFrom(x => x.ProjectId)).
                 ForMember(x => x.Student_Level, x => x.MapFrom(x => x.Level)).
                 ForMember(x => x.Student_BirthDate, x => x.MapFrom(x => x.BirthDate)).
                 ForMember(x => x.Student_FName, x => x.MapFrom(x => x.FirstName)).

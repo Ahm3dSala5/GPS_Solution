@@ -9,7 +9,7 @@ namespace GraduationProjecrStore.Infrastructure.Domain.Entities.Business
     {
         public string ?Description { set; get; }
         public string ?ContentType { get; set; }
-        public byte[]? Data { get; set; }
+        public string FileName { get; set; }
         public DateTime UploadAt { set; get; }
         public int DepartmentId { set; get; }
         public int SupervisorId { set; get; }

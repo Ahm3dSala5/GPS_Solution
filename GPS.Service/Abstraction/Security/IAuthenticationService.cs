@@ -14,5 +14,6 @@ namespace GraduationProjectStore.Service.Abstraction.Security
         ValueTask<object> ConfirmForgetPasswordAsync(ConfirmForgotPasswordDTO confirmforgetPassword);
         ValueTask<ApplicationUser> GetUserByNameAsync(string username);
         ValueTask<string> DeleteUserAsync(string username);
+        ValueTask<string> Logout();
     }
 }

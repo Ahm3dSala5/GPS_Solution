@@ -150,13 +150,14 @@ namespace GraduationProjecrStore.Infrastructure.Migrations
                     b.Property<string>("ContentType")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<byte[]>("Data")
-                        .HasColumnType("varbinary(max)");
-
                     b.Property<int>("DepartmentId")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FileName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -177,32 +178,6 @@ namespace GraduationProjecrStore.Infrastructure.Migrations
                     b.HasIndex("SupervisorId");
 
                     b.ToTable("Project", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CollegeId = 1,
-                            DepartmentId = 1,
-                            SupervisorId = 1,
-                            UploadAt = new DateTime(2025, 4, 24, 4, 40, 30, 280, DateTimeKind.Local).AddTicks(6185)
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CollegeId = 2,
-                            DepartmentId = 2,
-                            SupervisorId = 2,
-                            UploadAt = new DateTime(2025, 5, 4, 4, 40, 30, 280, DateTimeKind.Local).AddTicks(6315)
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CollegeId = 3,
-                            DepartmentId = 3,
-                            SupervisorId = 3,
-                            UploadAt = new DateTime(2025, 5, 14, 4, 40, 30, 280, DateTimeKind.Local).AddTicks(6332)
-                        });
                 });
 
             modelBuilder.Entity("GraduationProjecrStore.Infrastructure.Domain.Entities.Business.Student", b =>
@@ -449,19 +424,19 @@ namespace GraduationProjecrStore.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("883d4839-63e5-48c9-817a-361957533f2b"),
+                            Id = new Guid("46366765-b10a-4741-8162-0ab642c29699"),
                             AccessFailedCount = 0,
                             Address = "123 Main St",
-                            ConcurrencyStamp = "c7de6551-09be-42f3-bf83-3dc2adb87507",
+                            ConcurrencyStamp = "6c24fffe-01de-41f1-87c2-02692e3f5fda",
                             Email = "testuser@example.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "TESTUSER@EXAMPLE.COM",
                             NormalizedUserName = "TESTUSER",
-                            PasswordHash = "AQAAAAIAAYagAAAAEGAhalghxp5XDOOZIkky90R41Tsl0EhzfJARDz/56TWed+wlE9285sOzeleI/asbDQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEO+MBTvF9+aBu65d3akTN8QMB3R+0Y3cYb6DUpaut5SOM1uxkvmm46Dlvn9jWQlkiQ==",
                             PhoneNumber = "1234567890",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "9ab0dced-bdb2-496b-95f3-279aec802cb0",
+                            SecurityStamp = "140774f3-bbfc-4e95-afc0-086a1e2c2ce7",
                             TwoFactorEnabled = false,
                             UserName = "testuser"
                         });

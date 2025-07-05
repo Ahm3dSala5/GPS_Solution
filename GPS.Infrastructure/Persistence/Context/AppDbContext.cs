@@ -7,6 +7,7 @@ namespace GraduationProjecrStore.Infrastructure.Persistence.Context
 {
     public class AppDbContext : IdentityDbContext<ApplicationUser, ApplicationRole,Guid>
     {
+        public AppDbContext()  { }
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
         public DbSet<Contact> Contacts { set; get; }
@@ -30,8 +31,14 @@ namespace GraduationProjecrStore.Infrastructure.Persistence.Context
             builder.Entity<Department>().HasData(seeder.Item3);
             builder.Entity<Supervisor>().HasData(seeder.Item2);
             builder.Entity<College>().HasData(seeder.Item5);
-            builder.Entity<Project>().HasData(seeder.Item4);
+            //builder.Entity<Project>().HasData(seeder.Item4);
             builder.Entity<Student>().HasData(seeder.Item1);
+        }
+
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer("Server=DESKTOP-UFQ365U\\SQLEXPRESS;Database=GraduationProjectStore;Integrated Security = SSPI ; TrustServerCertificate = True;");
         }
     }
 }

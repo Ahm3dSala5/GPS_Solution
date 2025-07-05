@@ -1,0 +1,175 @@
+﻿@model IEnumerable<GraduationProjecrStore.Infrastructure.Domain.DTOs.Department.ProjectModel>
+
+@{
+    ViewData["Title"] = "Projects";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var searchQuery = Context.Request.Query["search"];
+    var selectedDept = Context.Request.Query["department"];
+    var selectedYear = Context.Request.Query["year"];
+    var selectedCollege = Context.Request.Query["college"];
+
+    var departments = ViewBag.Departments as List<SelectListItem> ?? new();
+    var years = ViewBag.Years as List<SelectListItem> ?? new();
+    var colleges = ViewBag.Colleges as List<SelectListItem> ?? new();
+}
+
+<!-- Header with Create Button -->
+<div class="d-flex justify-content-between align-items-center mb-3 mt-4">
+    <h2 class="mb-0">Projects List</h2>
+    <a asp-action="NewIdea" asp-controller="Home" class="btn btn-success">
+        <i class="fas fa-plus-circle"></i> Add Project
+    </a>
+</div>
+
+<!-- Filters and Search -->
+<form method="get" class="row g-2 mb-4">
+
+    <div class="col-12 col-md-3">
+        <select name="department" class="form-select">
+            <option value="">All Departments</option>
+            @foreach (var dept in departments)
+            {
+                <option value="@dept.Value" selected="@(dept.Value == selectedDept ? "selected" : null)">
+                    @dept.Text
+                </option>
+            }
+        </select>
+    </div>
+
+    <div class="col-12 col-md-2">
+        <select name="year" class="form-select">
+            <option value="">All Years</option>
+            @foreach (var y in years)
+            {
+                <option value="@y.Value" selected="@(y.Value == selectedYear ? "selected" : null)">
+                    @y.Text
+                </option>
+            }
+        </select>
+    </div>
+
+    <div class="col-12 col-md-2">
+        <select name="college" class="form-select">
+            <option value="">All Colleges</option>
+            @foreach (var col in colleges)
+            {
+                <option value="@col.Value" selected="@(col.Value == selectedCollege ? "selected" : null)">
+                    @col.Text
+                </option>
+            }
+        </select>
+    </div>
+
+    <div class="col-12 col-md-3">
+        <input type="text" name="search" value="@searchQuery" class="form-control" placeholder="🔍 Search projects..." />
+    </div>
+
+    <div class="col-12 col-md-2 d-grid">
+        <button type="submit" class="btn btn-primary">
+            <i class="fas fa-filter"></i> Filter
+        </button>
+    </div>
+</form>
+
+<!-- Project Table -->
+<div class="table-responsive shadow-sm rounded border">
+    <table class="table table-hover table-bordered align-middle text-center mb-0">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">Project Name</th>
+                <th scope="col">Department</th>
+                <th scope="col">Supervisor</th>
+                <th scope="col">Year</th>
+                <th scope="col">Description</th>
+                <th scope="col">Uploaded At</th>
+                <th scope="col">File</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var project in Model)
+            {
+                <tr>
+                    <td class="fw-semibold">@project.Name</td>
+                    <td>@project.DepartmentName</td>
+                    <td>@project.SupervisorName</td>
+                    <td>@project.Year</td>
+                    <td class="text-start">@project.Description</td>
+                    <td>@project.UploadAt.ToString("yyyy-MM-dd")</td>
+                    <td>
+                        @if (project.PFile != null)
+                        {
+                            <span class="badge bg-success">@project.PFile.FileName</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-secondary">No File</span>
+                        }
+                    </td>
+                    <td>
+                        <div class="d-flex justify-content-center gap-2">
+                            <a href="/Department/Edit/1" class="btn btn-sm btn-outline-primary" title="Edit">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a href="/Department/Create" class="btn btn-sm btn-outline-success" title="Add New">
+                                <i class="fas fa-plus-circle"></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<!-- Pagination Controls -->
+<div class="d-flex justify-content-between align-items-center mt-3">
+    <button id="prevBtn" class="btn btn-outline-secondary" onclick="prevPage()" disabled>
+        <i class="fas fa-chevron-left"></i> Previous
+    </button>
+    <span id="paginationStatus" class="fw-bold"></span>
+    <button id="nextBtn" class="btn btn-outline-secondary" onclick="nextPage()">
+        Next <i class="fas fa-chevron-right"></i>
+    </button>
+</div>
+
+@section Scripts {
+    <script>
+        const pageSize = 5;
+        let currentPage = 1;
+        let projects = [];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            projects = Array.from(document.querySelectorAll('tbody tr'));
+            showPage(currentPage);
+        });
+
+        function showPage(page) {
+            const start = (page - 1) * pageSize;
+            const end = start + pageSize;
+
+            projects.forEach((row, index) => {
+                row.style.display = index >= start && index < end ? '' : 'none';
+            });
+
+            document.getElementById('paginationStatus').innerText = `Page ${page} of ${Math.ceil(projects.length / pageSize)}`;
+            document.getElementById('prevBtn').disabled = page === 1;
+            document.getElementById('nextBtn').disabled = end >= projects.length;
+        }
+
+        function nextPage() {
+            if (currentPage * pageSize < projects.length) {
+                currentPage++;
+                showPage(currentPage);
+            }
+        }
+
+        function prevPage() {
+            if (currentPage > 1) {
+                currentPage--;
+                showPage(currentPage);
+            }
+        }
+    </script>
+}

@@ -40,7 +40,6 @@ namespace GraduationProjectStore.Core.Feature.Projects.Command.Handler
             {
                 await request.projectDTO.projectFile.CopyToAsync(memoryStream);
                 _project.Name = request.projectDTO.projectFile.Name;
-                _project.Data = memoryStream.ToArray();
                 _project.ContentType = request.projectDTO.projectFile.ContentType;
                 _project.DepartmentId = request.projectDTO.DepartmentId;
                 _project.SupervisorId = request.projectDTO.SupervisorId;

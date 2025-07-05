@@ -13,8 +13,7 @@ namespace GraduationProjectStore.Core.Mapping.Projects
                .ForMember(dest => dest.Project_DepartmentId, opt => opt.MapFrom(src => src.DepartmentId))
                .ForMember(dest => dest.Project_Description, opt => opt.MapFrom(src => src.Description))
                .ForMember(dest => dest.Project_UploadAt, opt => opt.MapFrom(src => src.UploadAt))
-               .ForMember(dest => dest.Project_ContentType, opt => opt.MapFrom(src => src.ContentType))
-               .ForMember(dest => dest.Project_Data, opt => opt.MapFrom(src => src.Data));
+               .ForMember(dest => dest.Project_ContentType, opt => opt.MapFrom(src => src.ContentType));
         }
     }
 }

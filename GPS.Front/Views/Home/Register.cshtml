@@ -1,0 +1,36 @@
+﻿@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5" style="max-width: 500px;">
+    <h2 class="text-center mb-4">Register</h2>
+
+    <form asp-controller="Authentication" asp-action="Register">
+        <div class="mb-3">
+            <label for="UserName" class="form-label">User Name</label>
+            <input type="text" class="form-control" id="UserName" name="UserName" required />
+        </div>
+        <div class="mb-3">
+            <label for="Address" class="form-label">Address</label>
+            <input type="text" class="form-control" id="Address" name="Address" required />
+        </div>
+        <div class="mb-3">
+            <label for="Email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="Email" name="Email" required />
+        </div>
+        <div class="mb-3">
+            <label for="Password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="Password" name="Password" required />
+        </div>
+        <div class="mb-3">
+            <label for="ConfirmPassword" class="form-label">Confirm Password</label>
+            <input type="password" class="form-control" id="ConfirmPassword" name="ConfirmPassword" required />
+        </div>
+        <div class="d-grid">
+            <button type="submit" class="btn btn-success">Register</button>
+        </div>
+    </form>
+</div>
+
+

@@ -1,0 +1,27 @@
+﻿@model GraduationProjecrStore.Infrastructure.Domain.Entities.Business.Department
+
+@{
+    ViewData["Title"] = "Edit Department";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid px-4 mt-4">
+    <form asp-controller="Department" asp-action="Update" method="post" class="border p-4 rounded shadow bg-light w-100">
+        <h2 class="text-center mb-4">Edit Department Info</h2>
+
+        <!-- Hidden Department ID -->
+        <input type="hidden" name="deparId" value="@Model.Id" />
+
+        <div class="mb-3">
+            <label for="Department_Name" class="form-label">Department Name</label>
+            <input type="text" id="Department_Name" name="depatName" value="@Model.Name" class="form-control" placeholder="Enter department name" required />
+        </div>
+
+        <div class="mb-4">
+            <label for="Department_Manager" class="form-label">Department Manager</label>
+            <input type="text" id="Department_Manager" name="departManager" value="@Model.Manager" class="form-control" placeholder="Enter manager name" required />
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">Update</button>
+    </form>
+</div>

@@ -1,0 +1,26 @@
+﻿@model GraduationProjecrStore.Infrastructure.Domain.DTOs.Department.DepartmentDTO
+
+@{
+    ViewData["Title"] = "Add Department";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid px-4 mt-4">
+    <form asp-controller="Department" asp-action="Create" method="post" class="bg-light p-4 rounded shadow w-100">
+        <h2 class="mb-4">Add Department</h2>
+
+        <div class="mb-3 text-start">
+            <label asp-for="depatName" class="form-label">Deoartment Name</label>
+            <input asp-for="depatName" class="form-control" placeholder="Enter department name" required />
+            <span asp-validation-for="depatName" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3 text-start">
+            <label asp-for="departManager" class="form-label">Department Manager</label>
+            <input asp-for="departManager" class="form-control" placeholder="Enter department manager" required />
+            <span asp-validation-for="departManager" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100 py-2 fw-bold">Add Department</button>
+    </form>
+</div>

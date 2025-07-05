@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Graduation Project Store</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- First Navbar -->
+<div class="first-navbar bg-dark py-2">
+  <nav class="navbar container">
+    <div class="container-fluid d-flex justify-content-between align-items-center">
+      <div class="d-flex align-items-center gap-3">
+        <a href="#"><i class="fa-solid fa-house text-white fs-5"></i></a>
+        <a href="#" class="navbar-brand text-white">Login</a>
+        <a href="#" class="navbar-brand text-white">Registration</a>
+      </div>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search Our Site" aria-label="Search">
+        <button class="btn btn-outline-light" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+      </form>
+    </div>
+  </nav>
+</div>
+
+<!-- Graduation Project Store Title -->
+<div class="container-fluid graduationProjectStore bg-light mt-3 py-2">
+  <h2 class="container m-0">Graduation Project Store</h2>
+</div>
+
+<!-- Main Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark p-0">
+  <div class="container-fluid px-3">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav m-auto">
+        <li class="nav-item">
+          <a class="nav-link text-white" href="#home">Home <i class="fa-solid fa-chevron-down"></i></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="#projects">Projects <i class="fa-solid fa-chevron-down"></i></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="#new">New Idea <i class="fa-solid fa-chevron-down"></i></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="about.html">About <i class="fa-solid fa-chevron-down"></i></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="#contact">Contact <i class="fa-solid fa-chevron-down"></i></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Filters -->
+<div class="filters container mt-4">
+  <select>
+    <option>College</option>
+  </select>
+  <select>
+    <option>Department</option>
+  </select>
+  <select>
+    <option>Years</option>
+  </select>
+  <input type="text" placeholder="Project Name" />
+  <button>Search</button>
+</div>
+
+<!-- Table -->
+<div class="table-container container">
+  <label>Show
+    <select id="rowsPerPage">
+      <option value="5">5</option>
+      <option value="10">10</option>
+      <option value="15">15</option>
+      <option value="20">20</option>
+    </select>
+  </label>
+
+  <table class="table table-bordered mt-3">
+    <thead class="table-dark">
+      <tr>
+        <th>College</th>
+        <th>Department</th>
+        <th>Years</th>
+        <th>Project Name</th>
+        <th>Project Details</th>
+      </tr>
+    </thead>
+    <tbody id="projectTableBody">
+      <tr><td>Engineering</td><td>CS</td><td>2022</td><td>AI Assistant</td><td><span class="download-icon">⬇</span></td></tr>
+      <tr><td>Engineering</td><td>IT</td><td>2023</td><td>Smart City</td><td><span class="download-icon">⬇</span></td></tr>
+      <tr><td>Science</td><td>Math</td><td>2022</td><td>Number Theory</td><td><span class="download-icon">⬇</span></td></tr>
+      <tr><td>Science</td><td>Physics</td><td>2020</td><td>Quantum Lab</td><td><span class="download-icon">⬇</span></td></tr>
+      <tr><td>Business</td><td>Marketing</td><td>2021</td><td>Brand Analytics</td><td><span class="download-icon">⬇</span></td></tr>
+      <tr><td>Engineering</td><td>CS</td><td>2019</td><td>Chatbot</td><td><span class="download-icon">⬇</span></td></tr>
+      <tr><td>Science</td><td>Chemistry</td><td>2021</td><td>Polymer Study</td><td><span class="download-icon">⬇</span></td></tr>
+      <tr><td>Arts</td><td>Design</td><td>2020</td><td>UX Tools</td><td><span class="download-icon">⬇</span></td></tr>
+      <tr><td>Engineering</td><td>EE</td><td>2023</td><td>Solar Tracker</td><td><span class="download-icon">⬇</span></td></tr>
+      <tr><td>Business</td><td>Finance</td><td>2022</td><td>Crypto Trends</td><td><span class="download-icon">⬇</span></td></tr>
+    </tbody>
+  </table>
+
+  <div class="pagination text-center">
+    <button>&laquo;</button>
+    <button>1</button>
+    <button>2</button>
+    <button>3</button>
+    <button>&raquo;</button>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

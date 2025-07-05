@@ -1,0 +1,50 @@
+﻿@model GraduationProjecrStore.Infrastructure.Domain.DTOs.Supervisor.CreateSupervisorDTO
+
+@{
+    ViewData["Title"] = "Add Supervisor";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid px-4 mt-4">
+    <form asp-controller="Supervisor" asp-action="Create" method="post" class="bg-light p-4 rounded shadow w-100">
+        <h2 class="mb-4">Add Supervisor</h2>
+
+        <div class="mb-3 text-start">
+            <label asp-for="FirstName" class="form-label"></label>
+            <input asp-for="FirstName" class="form-control" placeholder="Enter first name" required />
+            <span asp-validation-for="FirstName" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3 text-start">
+            <label asp-for="LastName" class="form-label"></label>
+            <input asp-for="LastName" class="form-control" placeholder="Enter last name" required />
+            <span asp-validation-for="LastName" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3 text-start">
+            <label asp-for="Position" class="form-label"></label>
+            <input asp-for="Position" class="form-control" placeholder="Enter position" required />
+            <span asp-validation-for="Position" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3 text-start">
+            <label asp-for="Address" class="form-label"></label>
+            <input asp-for="Address" class="form-control" placeholder="Enter address" />
+            <span asp-validation-for="Address" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3 text-start">
+            <label asp-for="BirthDate" class="form-label"></label>
+            <input asp-for="BirthDate" type="date" class="form-control" />
+            <span asp-validation-for="BirthDate" class="text-danger"></span>
+        </div>
+
+        <div class="mb-4 text-start">
+            <label asp-for="DepartmentId" class="form-label"></label>
+            <input asp-for="DepartmentId" type="number" class="form-control" placeholder="Enter department ID" required />
+            <span asp-validation-for="DepartmentId" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100 py-2 fw-bold">Add Supervisor</button>
+    </form>
+</div>

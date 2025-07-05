@@ -1,0 +1,52 @@
+﻿@{
+    ViewData["Title"] = "Add Student";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid px-4 mt-4">
+    <form asp-controller="Student" asp-action="Create" method="post" class="bg-light p-4 rounded shadow w-100">
+        <h2 class="mb-4">Add Student</h2>
+
+        <div class="mb-3 text-start">
+            <label for="Student_FName" class="form-label">First Name</label>
+            <input type="text" id="Student_FName" name="Student_FName" class="form-control" placeholder="Enter first name" required />
+        </div>
+
+        <div class="mb-3 text-start">
+            <label for="Student_LName" class="form-label">Last Name</label>
+            <input type="text" id="Student_LName" name="Student_LName" class="form-control" placeholder="Enter last name" required />
+        </div>
+
+        <div class="mb-3 text-start">
+            <label for="Student_Address" class="form-label">Address</label>
+            <input type="text" id="Student_Address" name="Student_Address" class="form-control" placeholder="Enter address" />
+        </div>
+
+        <div class="mb-3 text-start">
+            <label for="Student_BirthDate" class="form-label">Birth Date</label>
+            <input type="date" id="Student_BirthDate" name="Student_BirthDate" class="form-control" />
+        </div>
+
+        <div class="mb-3 text-start">
+            <label for="Student_GPA" class="form-label">GPA</label>
+            <input type="number" step="0.01" id="Student_GPA" name="Student_GPA" class="form-control" placeholder="Enter GPA" />
+        </div>
+
+        <div class="mb-3 text-start">
+            <label for="Student_Level" class="form-label">Level</label>
+            <input type="number" id="Student_Level" name="Student_Level" class="form-control" placeholder="Enter level" />
+        </div>
+
+        <div class="mb-3 text-start">
+            <label for="Student_DepartmentId" class="form-label">Department ID</label>
+            <input type="number" id="Student_DepartmentId" name="Student_DepartmentId" class="form-control" placeholder="Enter department ID" required />
+        </div>
+
+        <div class="mb-4 text-start">
+            <label for="Student_SupervisorId" class="form-label">Supervisor ID</label>
+            <input type="number" id="Student_SupervisorId" name="Student_SupervisorId" class="form-control" placeholder="Enter supervisor ID" required />
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100 py-2 fw-bold">Add Student</button>
+    </form>
+</div>

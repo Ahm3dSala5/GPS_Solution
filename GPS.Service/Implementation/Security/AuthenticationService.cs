@@ -53,7 +53,7 @@ namespace GraduationProjectStore.Service.Implementation.Security
                 (user, "ConfirmationCode", "ConfirmationCode");
             if(confirmforgetPassword.ConfirmationCode != code)
                 return "Invalid";
-
+            
             return UserHelper.GenerateToken(_config, user, await _userManager.GetRolesAsync(user)); 
         }
 
@@ -131,6 +131,12 @@ namespace GraduationProjectStore.Service.Implementation.Security
             // afterv this pice user created successfully 
             // then we will send confirmation code for user bny using it email
             return await UserHelper.GenerateConfirmationCode(appUser,_mail,_userManager);
+        }
+
+        public async ValueTask<string> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return "Successfully";
         }
     }
 }

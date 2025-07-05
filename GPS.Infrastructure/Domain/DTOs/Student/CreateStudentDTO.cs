@@ -16,7 +16,6 @@ namespace GraduationProjecrStore.Infrastructure.Domain.DTOs.Student
         public double Student_GPA { set; get; }
         public int Student_Level { set; get; }
         public int Student_DepartmentId { set; get; }
-        public int Student_ProjectId { set; get; }
         public int Student_SupervisorId { set; get; }
     }
 }
