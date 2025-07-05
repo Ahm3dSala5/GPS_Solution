@@ -36,23 +36,6 @@ namespace GraduationProjecrStore.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("College", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Computer Science"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Science"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Engineering"
-                        });
                 });
 
             modelBuilder.Entity("GraduationProjecrStore.Infrastructure.Domain.Entities.Business.Contact", b =>
@@ -107,32 +90,6 @@ namespace GraduationProjecrStore.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Department", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Manager = "Nabil Mustafa",
-                            Name = "IS"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Manager = "Ehab Rushdy",
-                            Name = "IT"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Manager = "Mohamed ElMahdy",
-                            Name = "CS"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Manager = "Ahmed ElSayed",
-                            Name = "DS"
-                        });
                 });
 
             modelBuilder.Entity("GraduationProjecrStore.Infrastructure.Domain.Entities.Business.Project", b =>
@@ -230,47 +187,6 @@ namespace GraduationProjecrStore.Infrastructure.Migrations
                     b.HasIndex("SupervisorId");
 
                     b.ToTable("Student", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Address = "Nasr City, Cairo",
-                            BirthDate = new DateTime(2002, 4, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DepartmentId = 1,
-                            FirstName = "Omar",
-                            GPA = 3.7000000000000002,
-                            LastName = "Mahmoud",
-                            Level = 4,
-                            ProjectId = 1,
-                            SupervisorId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Address = "Maadi, Cairo",
-                            BirthDate = new DateTime(2001, 9, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DepartmentId = 2,
-                            FirstName = "Salma",
-                            GPA = 3.8999999999999999,
-                            LastName = "Hussein",
-                            Level = 4,
-                            ProjectId = 2,
-                            SupervisorId = 2
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Address = "Giza, El Haram",
-                            BirthDate = new DateTime(2003, 2, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DepartmentId = 3,
-                            FirstName = "Youssef",
-                            GPA = 3.3999999999999999,
-                            LastName = "Tariq",
-                            Level = 3,
-                            ProjectId = 3,
-                            SupervisorId = 3
-                        });
                 });
 
             modelBuilder.Entity("GraduationProjecrStore.Infrastructure.Domain.Entities.Business.Supervisor", b =>
@@ -311,38 +227,6 @@ namespace GraduationProjecrStore.Infrastructure.Migrations
                     b.HasIndex("DepartmentId");
 
                     b.ToTable("Supervisor", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Address = "Cairo University, Building A",
-                            BirthDate = new DateTime(1975, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DepartmentId = 1,
-                            FirstName = "Ahmed",
-                            LastName = "Youssef",
-                            Position = "Professor"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Address = "Ain Shams University, Building B",
-                            BirthDate = new DateTime(1980, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DepartmentId = 2,
-                            FirstName = "Fatima",
-                            LastName = "Ali",
-                            Position = "Associate Professor"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Address = "Alexandria University, Building C",
-                            BirthDate = new DateTime(1990, 3, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DepartmentId = 3,
-                            FirstName = "Mohamed",
-                            LastName = "Hassan",
-                            Position = "Assistant Lecturer"
-                        });
                 });
 
             modelBuilder.Entity("GraduationProjecrStore.Infrastructure.Domain.Entities.Security.ApplicationRole", b =>
@@ -420,26 +304,6 @@ namespace GraduationProjecrStore.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("User", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("46366765-b10a-4741-8162-0ab642c29699"),
-                            AccessFailedCount = 0,
-                            Address = "123 Main St",
-                            ConcurrencyStamp = "6c24fffe-01de-41f1-87c2-02692e3f5fda",
-                            Email = "testuser@example.com",
-                            EmailConfirmed = true,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "TESTUSER@EXAMPLE.COM",
-                            NormalizedUserName = "TESTUSER",
-                            PasswordHash = "AQAAAAIAAYagAAAAEO+MBTvF9+aBu65d3akTN8QMB3R+0Y3cYb6DUpaut5SOM1uxkvmm46Dlvn9jWQlkiQ==",
-                            PhoneNumber = "1234567890",
-                            PhoneNumberConfirmed = true,
-                            SecurityStamp = "140774f3-bbfc-4e95-afc0-086a1e2c2ce7",
-                            TwoFactorEnabled = false,
-                            UserName = "testuser"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
