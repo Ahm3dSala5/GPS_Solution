@@ -1,7 +1,4 @@
-﻿using GraduationProjecrStore.Infrastructure.Domain.Entities.Business;
-using GraduationProjecrStore.Infrastructure.Domain.Entities.Business.Common;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.Internal;
+﻿using GraduationProjecrStore.Infrastructure.Domain.Entities.Business.Common;
 
 namespace GraduationProjecrStore.Infrastructure.Domain.Entities.Business
 {

@@ -18,11 +18,9 @@ namespace GraduationProjecrStore.Infrastructure.Persistence.Context
         public DbSet<College> Colleges { set; get; }
         public DbSet<ApplicationUser> ApplicationUsers { set; get; }
 
-
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
-
 
             /////////// Data Seeder ///////////
             builder.Entity<ApplicationUser>().HasData(Seeder.UserSeed());
@@ -34,8 +32,6 @@ namespace GraduationProjecrStore.Infrastructure.Persistence.Context
             //builder.Entity<Project>().HasData(seeder.Item4);
             builder.Entity<Student>().HasData(seeder.Item1);
         }
-
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Server=DESKTOP-UFQ365U\\SQLEXPRESS;Database=GraduationProjectStore;Integrated Security = SSPI ; TrustServerCertificate = True;");

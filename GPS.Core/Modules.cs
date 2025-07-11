@@ -10,7 +10,6 @@ namespace GraduationProjectStore.Core
     {
         public static void AddCoreModules(this IServiceCollection service)
         {
-
             // to add password defualt settings
             service.Configure<IdentityOptions>
             (

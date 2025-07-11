@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Graduation_Project_Store.API.Controllers
 {
     [ApiController]
-    [Route("api/supervisor")]
+    [Route("api/[controller]")]
     public class SupervisorController : Base
     {
         private readonly AppDbContext app;

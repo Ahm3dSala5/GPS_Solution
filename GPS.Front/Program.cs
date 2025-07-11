@@ -8,32 +8,27 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddControllersWithViews();
-// register Database
+// add database
 var connectionString = builder.Configuration.GetConnectionString("Connection");
 builder.Services.AddDbContext<AppDbContext>(option => option.UseSqlServer(connectionString));
 
-
-//
+// add identity
 
 builder.Services.AddIdentity<ApplicationUser, ApplicationRole>().
     AddEntityFrameworkStores<AppDbContext>().
     AddDefaultTokenProviders();
 
-
-// register business modules
+// add business modules
 builder.Services.AddServiceModules();
 builder.Services.AddInfrastructureModules();
 builder.Services.AddCoreModules();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
