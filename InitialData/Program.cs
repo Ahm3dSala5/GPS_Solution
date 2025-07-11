@@ -10,8 +10,11 @@ namespace GraduationProjectStore.InitialData
         {
 
             var context = new AppDbContext();
-
-           
+            FillData.FillCollegeData(context);
+            FillData.FillDepartmentData(context);
+            FillData.FillSupervisor(context);
+            FillData.FillStudentData(context);
+            FillData.FillProjectData(context);
         }
     }
 }

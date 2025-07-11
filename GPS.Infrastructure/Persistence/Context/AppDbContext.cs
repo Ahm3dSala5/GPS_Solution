@@ -34,8 +34,8 @@ namespace GraduationProjecrStore.Infrastructure.Persistence.Context
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //optionsBuilder.UseSqlServer("Server=DESKTOP-UFQ365U\\SQLEXPRESS;Database=GraduationProjectStore;Integrated Security = SSPI ; TrustServerCertificate = True;");
-            optionsBuilder.UseSqlServer("Server=.;Database=GraduationProjectStore;Integrated Security = SSPI ; TrustServerCertificate = True;");
+            optionsBuilder.UseSqlServer("Server=DESKTOP-UFQ365U\\SQLEXPRESS;Database=GraduationProjectStore;Integrated Security = SSPI ; TrustServerCertificate = True;");
+            //optionsBuilder.UseSqlServer("Server=.;Database=GraduationProjectStore;Integrated Security = SSPI ; TrustServerCertificate = True;");
 
         }
     }
