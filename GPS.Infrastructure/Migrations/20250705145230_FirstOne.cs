@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace GraduationProjecrStore.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class Create_UserSeed : Migration
+    public partial class FirstOne : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -17,7 +17,7 @@ namespace GraduationProjecrStore.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -201,9 +201,9 @@ namespace GraduationProjecrStore.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ContentType = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Data = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ContentType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FileName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UploadAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DepartmentId = table.Column<int>(type: "int", nullable: false),
                     SupervisorId = table.Column<int>(type: "int", nullable: false),
@@ -246,7 +246,7 @@ namespace GraduationProjecrStore.Infrastructure.Migrations
                     GPA = table.Column<double>(type: "float", nullable: false),
                     Level = table.Column<int>(type: "int", nullable: false),
                     DepartmentId = table.Column<int>(type: "int", nullable: false),
-                    ProjectId = table.Column<int>(type: "int", nullable: false),
+                    ProjectId = table.Column<int>(type: "int", nullable: true),
                     SupervisorId = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
@@ -272,11 +272,6 @@ namespace GraduationProjecrStore.Infrastructure.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
-
-            migrationBuilder.InsertData(
-                table: "User",
-                columns: new[] { "Id", "AccessFailedCount", "Address", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { new Guid("81232751-9ff3-4c54-a5f6-8f7697783c4c"), 0, "123 Main St", "669ba2ed-ff1a-4078-a0d4-aa5d7fae1c98", "testuser@example.com", true, false, null, "TESTUSER@EXAMPLE.COM", "TESTUSER", "AQAAAAIAAYagAAAAEDQ6vZiCpTWVaoHBXcuevlY7HiGxc5/LInRnseKsspMuq4WG2v6WCskG+4BoN0zbyQ==", "1234567890", true, "d6dee5a2-a104-4ce8-8c0b-ee31b4cda4ab", false, "testuser" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Contact_UserId",

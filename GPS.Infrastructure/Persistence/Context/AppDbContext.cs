@@ -23,18 +23,20 @@ namespace GraduationProjecrStore.Infrastructure.Persistence.Context
             builder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
 
             /////////// Data Seeder ///////////
-            builder.Entity<ApplicationUser>().HasData(Seeder.UserSeed());
+            //builder.Entity<ApplicationUser>().HasData(Seeder.UserSeed());
 
-            var seeder = Seeder.TableSeeder();
-            builder.Entity<Department>().HasData(seeder.Item3);
-            builder.Entity<Supervisor>().HasData(seeder.Item2);
-            builder.Entity<College>().HasData(seeder.Item5);
-            //builder.Entity<Project>().HasData(seeder.Item4);
-            builder.Entity<Student>().HasData(seeder.Item1);
+            //var seeder = Seeder.TableSeeder();
+            //builder.Entity<Department>().HasData(seeder.Item3);
+            //builder.Entity<Supervisor>().HasData(seeder.Item2);
+            //builder.Entity<College>().HasData(seeder.Item5);
+            ////builder.Entity<Project>().HasData(seeder.Item4);
+            //builder.Entity<Student>().HasData(seeder.Item1);
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=DESKTOP-UFQ365U\\SQLEXPRESS;Database=GraduationProjectStore;Integrated Security = SSPI ; TrustServerCertificate = True;");
+            //optionsBuilder.UseSqlServer("Server=DESKTOP-UFQ365U\\SQLEXPRESS;Database=GraduationProjectStore;Integrated Security = SSPI ; TrustServerCertificate = True;");
+            optionsBuilder.UseSqlServer("Server=.;Database=GraduationProjectStore;Integrated Security = SSPI ; TrustServerCertificate = True;");
+
         }
     }
 }
