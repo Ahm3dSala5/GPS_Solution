@@ -19,9 +19,12 @@ namespace GraduationProjectStore.InitialData
 
             services.AddLogging();
 
-            services.AddDbContext<AppDbContext>(options =>
-                options.UseSqlServer("Server=DESKTOP-UFQ365U\\SQLEXPRESS;Database=GraduationProjectStore;Integrated Security=SSPI;TrustServerCertificate=True;"));
+            //services.AddDbContext<AppDbContext>(options =>
+            //    options.UseSqlServer("Server=DESKTOP-UFQ365U\\SQLEXPRESS;Database=GraduationProjectStore;Integrated Security=SSPI;TrustServerCertificate=True;"));
 
+            services.AddDbContext<AppDbContext>(options =>
+               options.UseSqlServer("Server=DESKTOP-JFAH1RF;Database=GraduationProjectStore;Integrated Security=SSPI;TrustServerCertificate=True;"));
+            
             services.AddIdentity<ApplicationUser, ApplicationRole>()
                 .AddEntityFrameworkStores<AppDbContext>()
                 .AddDefaultTokenProviders();
