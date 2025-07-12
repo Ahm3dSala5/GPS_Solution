@@ -91,12 +91,12 @@ namespace Graduation_Project_Store.API.Controllers
             return HandledResult(getCommand);
         }
 
-        [HttpPut("Update")]
-        public async Task<IActionResult> Update(UpdateProjectDTO project)
+        [HttpPost("Update")]
+        public async Task<IActionResult> Update([FromForm]Project project)
         {
-
-            var updateCommand = await Mediator.Send(new UpdateProjectCommand(project));
-            return HandledResult(updateCommand);
+            _context.Projects.Update(project);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("PaginateAll", "Project");
         }
 
         [HttpDelete("Delete/{id}")]

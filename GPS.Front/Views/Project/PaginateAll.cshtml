@@ -83,7 +83,10 @@
                 <th scope="col">Description</th>
                 <th scope="col">Uploaded At</th>
                 <th scope="col">File</th>
-                <th scope="col">Actions</th>
+                @if(User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                {
+                    <th scope="col">Actions</th>
+                }
             </tr>
         </thead>
         <tbody>
@@ -98,16 +101,19 @@
                     <td>@project.UploadAt.ToString("yyyy-MM-dd")</td>
                     <td><!-- File display logic here if needed --></td>
                     <td>
-                        <div class="d-flex justify-content-center gap-2">
-                            <a asp-action="EditProj" asp-controller="Project" asp-route-id="@project.Id" class="btn btn-sm btn-outline-primary me-1" title="Edit">
-                                <i class="fas fa-edit"></i>
-                            </a>
+                        @if(User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                            <div class="d-flex justify-content-center gap-2">
+                                <a asp-action="EditProj" asp-controller="Project" asp-route-id="@project.Id" class="btn btn-sm btn-outline-primary me-1" title="Edit">
+                                    <i class="fas fa-edit"></i>
+                                </a>
 
-                            <button type="button" class="btn btn-sm btn-outline-danger" title="Delete"
-                                    onclick="openDeleteModal('@project.Id')">
-                                <i class="fas fa-trash-alt"></i>
-                            </button>
-                        </div>
+                                <button type="button" class="btn btn-sm btn-outline-danger" title="Delete"
+                                        onclick="openDeleteModal('@project.Id')">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </div>
+                        }
                     </td>
                 </tr>
             }
