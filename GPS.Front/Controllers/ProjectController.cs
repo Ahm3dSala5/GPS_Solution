@@ -6,6 +6,7 @@ using GraduationProjectStore.Core.Feature.Projects;
 using GraduationProjectStore.Core.Feature.Projects.Command.Request;
 using GraduationProjectStore.Core.Feature.Projects.Query.Request;
 using GraduationProjectStore.Service.Abstraction.Business;
+using GraduationProjectStore.Service.Implementation.Security;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -55,24 +56,25 @@ namespace Graduation_Project_Store.API.Controllers
                 .ToList();
 
             ViewBag.Years = _context.Projects
-                .Select(p => p.UploadAt.ToString())
+                .Select(p => p.UploadAt.Year.ToString())
                 .Distinct()
                 .OrderBy(y => y)
                 .Select(y => new SelectListItem { Value = y, Text = y })
                 .ToList();
 
-            ViewBag.Colleges = _context.Projects
-                .Select(p => p.College)
+            ViewBag.Colleges = _context.Colleges
+                .Select(p => p.Name)
                 .Distinct()
                 .Where(c => c != null)
-                .Select(c => new SelectListItem { Value = c.ToString(), Text = c.ToString() })
+                .Select(c => new SelectListItem { Value = c, Text = c })
                 .ToList();
 
-            var projectList = projects.ToList().Select(p => new ProjectModel
+            var projectList = projects.Include(x=>x.Supervisor).ToList().Select(p => new ProjectModel
             {
+                Id = p.Id,
                 Name = p.Name,
                 DepartmentName = p.Department.Name,
-                SupervisorName = p.Supervisor.Name,
+                SupervisorName = $"{p.Supervisor.FirstName} {p.Supervisor.LastName}",
                 Year = p.UploadAt.Year,
                 Description = p.Description,
                 UploadAt = p.UploadAt,
@@ -124,6 +126,27 @@ namespace Graduation_Project_Store.API.Controllers
 
             await projectService.CreateAsync(Project);
             return RedirectToAction("PaginateAll", "Project");
+        }
+
+        [HttpGet("EditProj/{id}")]
+        public async Task<IActionResult> EditProj(int id)
+        {
+            var project = await _context.Projects.FindAsync(id);
+            if (project == null) return NotFound();
+
+            ViewBag.Departments = _context.Departments
+                .Select(d => new SelectListItem { Value = d.Id.ToString(), Text = d.Name })
+                .ToList();
+
+            ViewBag.Supervisors = _context.Supervisors
+                .Select(s => new SelectListItem { Value = s.Id.ToString(), Text = $"{s.FirstName} {s.LastName}" })
+                .ToList();
+
+            ViewBag.Colleges = _context.Colleges
+                .Select(c => new SelectListItem { Value = c.Id.ToString(), Text = c.Name })
+                .ToList();
+
+            return View(project);
         }
     }
 }

@@ -71,7 +71,7 @@
                     <a asp-controller="Project" asp-action="PaginateAll" class="nav-link">Projects</a>
                    
 
-                    @if (User.IsInRole("Admin") || User.Identity.IsAuthenticated)
+                    @if (User.IsInRole("Admin") && User.Identity.IsAuthenticated)
                     {
                         <a asp-controller="Student" asp-action="OpenStudents" class="nav-link">Student</a>
                         <a asp-controller="Supervisor" asp-action="OpenSupervisor" class="nav-link">Supervisor</a>

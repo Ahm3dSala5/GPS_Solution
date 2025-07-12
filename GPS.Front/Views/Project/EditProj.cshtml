@@ -1,0 +1,74 @@
+﻿@model GraduationProjecrStore.Infrastructure.Domain.Entities.Business.Project
+
+@{
+    ViewData["Title"] = "Edit Project";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var departments = ViewBag.Departments as List<SelectListItem> ?? new();
+    var supervisors = ViewBag.Supervisors as List<SelectListItem> ?? new();
+    var colleges = ViewBag.Colleges as List<SelectListItem> ?? new();
+}
+
+<div class="container-fluid px-4 mt-4">
+    <form asp-controller="Project" asp-action="UpdateProj" method="post" class="border p-4 rounded shadow bg-light w-100">
+        <h2 class="text-center mb-4">Edit Project Info</h2>
+
+        <input type="hidden" name="Id" value="@Model.Id" />
+
+        <!-- Project Name -->
+        <div class="mb-3">
+            <label for="Name" class="form-label">Project Name</label>
+            <input type="text" id="Name" name="Name" value="@Model.Name" class="form-control" placeholder="Enter project name" required />
+        </div>
+
+        <!-- Description -->
+        <div class="mb-3">
+            <label for="Description" class="form-label">Description</label>
+            <input type="text" id="Description" name="Description" value="@Model.Description" class="form-control" required />
+        </div>
+
+        <!-- Department -->
+        <div class="mb-3">
+            <label for="DepartmentId" class="form-label">Department</label>
+            <select id="DepartmentId" name="DepartmentId" class="form-select" required>
+                <option value="">-- Select Department --</option>
+                @foreach (var dept in departments)
+                {
+                    <option value="@dept.Value" selected="@(Model.DepartmentId.ToString() == dept.Value ? "selected" : null)">
+                        @dept.Text
+                    </option>
+                }
+            </select>
+        </div>
+
+        <!-- Supervisor -->
+        <div class="mb-3">
+            <label for="SupervisorId" class="form-label">Supervisor</label>
+            <select id="SupervisorId" name="SupervisorId" class="form-select" required>
+                <option value="">-- Select Supervisor --</option>
+                @foreach (var sup in supervisors)
+                {
+                    <option value="@sup.Value" selected="@(Model.SupervisorId.ToString() == sup.Value ? "selected" : null)">
+                        @sup.Text
+                    </option>
+                }
+            </select>
+        </div>
+
+        <!-- College -->
+        <div class="mb-3">
+            <label for="CollegeId" class="form-label">College</label>
+            <select id="CollegeId" name="CollegeId" class="form-select">
+                <option value="">-- Select College --</option>
+                @foreach (var col in colleges)
+                {
+                    <option value="@col.Value" selected="@(Model.CollegeId?.ToString() == col.Value ? "selected" : null)">
+                        @col.Text
+                    </option>
+                }
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">Update Project</button>
+    </form>
+</div>

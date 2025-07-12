@@ -120,7 +120,6 @@ namespace GraduationProjectStore.Service.Implementation.Security
             {
                 UserName = user.UserName,
                 Address = user.Address,
-                PasswordHash = user.Password,
                 Email = user.Email
             };
 

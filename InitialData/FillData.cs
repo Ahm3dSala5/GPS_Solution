@@ -36,7 +36,7 @@ namespace GraduationProjectStore.InitialData
                     Description = ProjectData.Data()[Random.Shared.Next(0, 49)].Description,
                     SupervisorId = Random.Shared.Next(1, 2),
                     DepartmentId = Random.Shared.Next(1, 4),
-                    CollegeId = Random.Shared.Next(1, 3),
+                    CollegeId = Random.Shared.Next(1, 4),
                     UploadAt = DateTime.Now.AddYears(Random.Shared.Next(0,10)),
                 };
                 context.Projects.Add(project);
@@ -82,7 +82,7 @@ namespace GraduationProjectStore.InitialData
                 "El Mahdy"
             };
 
-            for (int i = 0; i <= 2; i++)
+            for (int i = 0; i <= 3; i++)
             {
                 var department = new Department()
                 {

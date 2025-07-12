@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\GPS.Infrastructure\GraduationProjecrStore.Infrastructure.csproj" />
+    <ProjectReference Include="..\GPS.Service\GraduationProjectStore.Service.csproj" />
   </ItemGroup>
 
 </Project>
